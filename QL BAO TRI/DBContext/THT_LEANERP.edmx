@@ -1,0 +1,2263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="THT_LEANERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CMMS_BaoCaoTonThatThoiGian">
+          <Key>
+            <PropertyRef Name="PhieuID" />
+          </Key>
+          <Property Name="TonThatID" Type="bigint" />
+          <Property Name="PhieuID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="TuThoiGian" Type="datetime" />
+          <Property Name="DenThoiGian" Type="datetime" />
+          <Property Name="NhanVienId1" Type="bigint" Nullable="false" />
+          <Property Name="NhanVienId2" Type="bigint" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayInBienBan" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhan_ChiTiet">
+          <Key>
+            <PropertyRef Name="BoPhanChiTietId" />
+          </Key>
+          <Property Name="BoPhanChiTietId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="bigint" />
+          <Property Name="DacTinhChiTietId" Type="bigint" />
+          <Property Name="GiaTri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhanThietBi">
+          <Key>
+            <PropertyRef Name="BoPhanThietBiId" />
+          </Key>
+          <Property Name="BoPhanThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaBoPhanThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenBoPhanThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+          <Property Name="VatTuId" Type="bigint" />
+          <Property Name="ThoiGianThayThe" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhanThietBi_LinhKienThietBi">
+          <Key>
+            <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+          </Key>
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="bigint" />
+          <Property Name="LinhKienThietBiId" Type="bigint" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_ChiTietPhieuBaoTri">
+          <Key>
+            <PropertyRef Name="MaSoPhieu" />
+            <PropertyRef Name="ThietBi_CumThietBiId" />
+            <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+          </Key>
+          <Property Name="MaSoPhieu" Type="bigint" Nullable="false" />
+          <Property Name="ThietBi_CumThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="HienTuongId" Type="bigint" />
+          <Property Name="NguyenNhanId" Type="bigint" />
+          <Property Name="GhiChuNguyenNhan" Type="nvarchar" MaxLength="500" />
+          <Property Name="GiaiPhapId" Type="bigint" />
+          <Property Name="NhanVienThucHienId" Type="bigint" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CMMS_ChungLoaiThietBi">
+          <Key>
+            <PropertyRef Name="ChungLoaiThietBiId" />
+          </Key>
+          <Property Name="ChungLoaiThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaChungLoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenChungLoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+          <Key>
+            <PropertyRef Name="ThietBi_DacTinhThongSoId" />
+          </Key>
+          <Property Name="ThietBi_DacTinhThongSoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="DacTinhThongSoId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="CMMS_CongTyDichVu">
+          <Key>
+            <PropertyRef Name="CongTyDichVuId" />
+          </Key>
+          <Property Name="CongTyDichVuId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoaiDichVu" Type="bigint" />
+          <Property Name="MaCongTy" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenCongTy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
+          <Property Name="DienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_CumThietBi">
+          <Key>
+            <PropertyRef Name="CumThietBiId" />
+          </Key>
+          <Property Name="CumThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaCumThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenCumThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_CumThietBi_BoPhanThietBi">
+          <Key>
+            <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+          </Key>
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBi_CumThietBiId" Type="bigint" />
+          <Property Name="BoPhanThietBiId" Type="bigint" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_DacTinhChiTiet">
+          <Key>
+            <PropertyRef Name="DacTinhChiTietId" />
+          </Key>
+          <Property Name="DacTinhChiTietId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDacTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="TenDacTinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonViTinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_DacTinhThongSo">
+          <Key>
+            <PropertyRef Name="DacTinhThongSoId" />
+          </Key>
+          <Property Name="DacTinhThongSoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaDacTinhThongSo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenDacTinhThongSo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_DanhMuCThongSoGiamSat">
+          <Key>
+            <PropertyRef Name="ThongSoID" />
+          </Key>
+          <Property Name="ThongSoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenThongSo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonViTinh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_GiaiPhapBaoTri">
+          <Key>
+            <PropertyRef Name="GiaiPhapId" />
+          </Key>
+          <Property Name="GiaiPhapId" Type="bigint" Nullable="false" />
+          <Property Name="MaGiaiPhap" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MoTaGiaiPhap" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_HienTuong">
+          <Key>
+            <PropertyRef Name="HienTuongId" />
+          </Key>
+          <Property Name="HienTuongId" Type="bigint" Nullable="false" />
+          <Property Name="MaHienTuong" Type="nvarchar" MaxLength="10" />
+          <Property Name="MoTaHienTuong" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_KetQuaDo_BoPhan">
+          <Key>
+            <PropertyRef Name="ThongSoBoPhanID" />
+            <PropertyRef Name="ThoiDiemDo" />
+          </Key>
+          <Property Name="ThongSoBoPhanID" Type="int" Nullable="false" />
+          <Property Name="ThoiDiemDo" Type="smalldatetime" Nullable="false" />
+          <Property Name="GiaTriDo" Type="real" />
+          <Property Name="NguoiDo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_KhauHaoThietBi">
+          <Key>
+            <PropertyRef Name="KhauHaoThietBiId" />
+          </Key>
+          <Property Name="KhauHaoThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="LoaiKhauHaoId" Type="bigint" />
+          <Property Name="GiaTriKhauHao" Type="float" />
+          <Property Name="NgayKhauHao" Type="float" />
+        </EntityType>
+        <EntityType Name="CMMS_KhuVuc">
+          <Key>
+            <PropertyRef Name="KhuVucId" />
+          </Key>
+          <Property Name="KhuVucId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaKhuVuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenKhuVuc" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_KhuVuc_ThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+            <PropertyRef Name="KhuVucId" />
+          </Key>
+          <Property Name="ThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="KhuVucId" Type="bigint" Nullable="false" />
+          <Property Name="ThoiGianBatDau" Type="date" />
+          <Property Name="ThoiGianKetThuc" Type="date" />
+        </EntityType>
+        <EntityType Name="CMMS_LinhKien_ChiTiet">
+          <Key>
+            <PropertyRef Name="LinhKienChiTietId" />
+          </Key>
+          <Property Name="LinhKienChiTietId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="bigint" />
+          <Property Name="DacTinhChiTietId" Type="bigint" />
+          <Property Name="GiaTri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_LinhKienThietBi">
+          <Key>
+            <PropertyRef Name="LinhKienThietBiId" />
+          </Key>
+          <Property Name="LinhKienThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLinhKienThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenLinhKienThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+          <Property Name="VatTuId" Type="bigint" />
+          <Property Name="ThoiGianThayThe" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiDichVu">
+          <Key>
+            <PropertyRef Name="LoaiDichVuId" />
+          </Key>
+          <Property Name="LoaiDichVuId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLoaiDichVu" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenLoaiDichVu" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiKhauHao">
+          <Key>
+            <PropertyRef Name="LoaiKhauHaoId" />
+          </Key>
+          <Property Name="LoaiKhauHaoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLoaiKhauHao" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenKhauHao" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiKhiemKhuyet">
+          <Key>
+            <PropertyRef Name="KhiemKhuyetID" />
+          </Key>
+          <Property Name="KhiemKhuyetID" Type="int" Nullable="false" />
+          <Property Name="TenKhiemKhuyet" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiTaiLieuKyThuat">
+          <Key>
+            <PropertyRef Name="LoaiTaiLieuKyThuatId" />
+          </Key>
+          <Property Name="LoaiTaiLieuKyThuatId" Type="bigint" Nullable="false" />
+          <Property Name="MaLoaiTLKT" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenLoaiTLKT" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CMMS_NguyenNhan">
+          <Key>
+            <PropertyRef Name="NguyenNhanId" />
+          </Key>
+          <Property Name="NguyenNhanId" Type="bigint" Nullable="false" />
+          <Property Name="MaNguyenNhan" Type="nvarchar" MaxLength="10" />
+          <Property Name="NhomNguyenNhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTaNguyenNhan" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CMMS_NhomThietBi">
+          <Key>
+            <PropertyRef Name="NhomThietBiID" />
+          </Key>
+          <Property Name="NhomThietBiID" Type="bigint" Nullable="false" />
+          <Property Name="TenNhomThietBi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_PhieuBaoTri">
+          <Key>
+            <PropertyRef Name="MaSoPhieu" />
+          </Key>
+          <Property Name="MaSoPhieu" Type="bigint" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="NgayLap" Type="smalldatetime" />
+          <Property Name="IdNhanVienLap" Type="bigint" />
+          <Property Name="MoTaBanDau" Type="nvarchar" MaxLength="100" />
+          <Property Name="ThietBi_CumThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="ThoiGianBatDauNgungMay" Type="datetime" />
+          <Property Name="ThoiGianBatDauSua" Type="datetime" />
+          <Property Name="ThoiGianSuaXong" Type="datetime" />
+          <Property Name="SoGioTuLanHuTruoc" Type="int" />
+          <Property Name="KetQuaNghiemThu" Type="nvarchar" MaxLength="10" />
+          <Property Name="IdNhanVienNghiemThu" Type="bigint" />
+          <Property Name="YKienNghiemThu" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdNhanVienBaoTri" Type="bigint" />
+          <Property Name="KeHoach" Type="nvarchar" MaxLength="10" />
+          <Property Name="DinhKy" Type="nvarchar" MaxLength="10" />
+          <Property Name="Nguon" Type="nvarchar" MaxLength="10" />
+          <Property Name="Khoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="CMMS_TaiLieuKyThuat_ThietBi">
+          <Key>
+            <PropertyRef Name="TaiLieuKyThuat_ThietBiId" />
+          </Key>
+          <Property Name="TaiLieuKyThuat_ThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="LoaiTLKTId" Type="bigint" />
+          <Property Name="TapTin" Type="varbinary(max)" />
+          <Property Name="LoaiTapTin" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_TheKhiemKhuyet">
+          <Key>
+            <PropertyRef Name="TheId" />
+          </Key>
+          <Property Name="TheId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="ThietBi_CumThietBiId" Type="bigint" />
+          <Property Name="MotaKhiemKhuyet" Type="nvarchar" MaxLength="500" />
+          <Property Name="KhiemKhuyetID" Type="int" />
+          <Property Name="NhanVienId" Type="bigint" />
+          <Property Name="MauThe" Type="nvarchar" MaxLength="10" />
+          <Property Name="NgayTreo" Type="smalldatetime" />
+          <Property Name="NgayXuLyXong" Type="smalldatetime" />
+          <Property Name="BienPhapXuLy" Type="nvarchar" MaxLength="500" />
+          <Property Name="KetQuaXuLy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNhanVienXuLy" Type="bigint" />
+          <Property Name="MaSoPhieuBaoTri" Type="int" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+          </Key>
+          <Property Name="ThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaThietBiCu" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+          <Property Name="ChungLoaiThietBiId" Type="bigint" />
+          <Property Name="MaTaiSan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="Serial" Type="nvarchar" MaxLength="50" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayMua" Type="nchar" MaxLength="10" />
+          <Property Name="Gia" Type="nchar" MaxLength="10" />
+          <Property Name="ThoiHanBaoHanh" Type="nchar" MaxLength="10" />
+          <Property Name="ThongSoBaoHanh" Type="nchar" MaxLength="10" />
+          <Property Name="TinhTrangMua" Type="nchar" MaxLength="10" />
+          <Property Name="DungDePhanBoSanXuat" Type="bit" />
+          <Property Name="Left" Type="int" />
+          <Property Name="Top" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Caption" Type="varchar" MaxLength="20" />
+          <Property Name="TrenLayout" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_BoPhanQuanLy">
+          <Key>
+            <PropertyRef Name="ThietBi_BoPhanQunLyId" />
+          </Key>
+          <Property Name="ThietBi_BoPhanQunLyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="BoPhanId" Type="bigint" />
+          <Property Name="ThoiGianNhanThietBi" Type="date" />
+          <Property Name="ThoiGianBanGiaoThietBi" Type="date" />
+          <Property Name="QuanLy" Type="bit" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_CongTyDichVu">
+          <Key>
+            <PropertyRef Name="ThietBi_CongTyDichVuId" />
+          </Key>
+          <Property Name="ThietBi_CongTyDichVuId" Type="bigint" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="CongTyDichVuId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_CumThietBi">
+          <Key>
+            <PropertyRef Name="ThietBi_CumThietBiId" />
+          </Key>
+          <Property Name="ThietBi_CumThietBiId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThietBiId" Type="bigint" />
+          <Property Name="CumThietBiId" Type="bigint" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_ThongSoBoPhan">
+          <Key>
+            <PropertyRef Name="ThongSoBoPhanID" />
+          </Key>
+          <Property Name="ThongSoBoPhanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThongSoID" Type="int" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="bigint" />
+          <Property Name="GiaTriMax" Type="real" />
+          <Property Name="GiaTriMin" Type="real" />
+        </EntityType>
+        <EntityType Name="CMMS_ThongSoDichVu">
+          <Key>
+            <PropertyRef Name="ThongSoDichVuId" />
+          </Key>
+          <Property Name="ThongSoDichVuId" Type="bigint" Nullable="false" />
+          <Property Name="LoaiDichVuId" Type="bigint" Nullable="false" />
+          <Property Name="TenGoi" Type="nvarchar" MaxLength="50" />
+          <Property Name="GiaTri" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CMMS_TrangThaiThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+          </Key>
+          <Property Name="ThietBiId" Type="bigint" Nullable="false" />
+          <Property Name="NhomThietBiID" Type="bigint" />
+          <Property Name="TonThatId" Type="bigint" />
+          <Property Name="ThoiGianDung" Type="smalldatetime" />
+          <Property Name="NhanVienId" Type="bigint" />
+          <Property Name="GhiChuTonThat" Type="nvarchar" MaxLength="100" />
+          <Property Name="SoTheVang" Type="smallint" />
+          <Property Name="SoTheDo" Type="smallint" />
+          <Property Name="SoTheQuaHan" Type="smallint" />
+          <Property Name="ChieuTreoThe" Type="nvarchar" MaxLength="50" />
+          <Property Name="AmBao" Type="varchar" MaxLength="10" />
+          <Property Name="X" Type="int" />
+          <Property Name="Y" Type="int" />
+          <Property Name="H" Type="int" />
+          <Property Name="W" Type="int" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="10" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaSoPhieuBaoTri" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhan_ChiTiet" Type="Self.CMMS_BoPhan_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhan_ChiTiet">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet">
+          <End Role="CMMS_DacTinhChiTiet" Type="Self.CMMS_DacTinhChiTiet" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhan_ChiTiet" Type="Self.CMMS_BoPhan_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhan_ChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi">
+          <End Role="CMMS_LinhKienThietBi" Type="Self.CMMS_LinhKienThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LinhKienThietBi">
+              <PropertyRef Name="LinhKienThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="LinhKienThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu">
+          <End Role="CMMS_LoaiDichVu" Type="Self.CMMS_LoaiDichVu" Multiplicity="0..1" />
+          <End Role="CMMS_CongTyDichVu" Type="Self.CMMS_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_CongTyDichVu">
+              <PropertyRef Name="LoaiDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi">
+          <End Role="CMMS_BoPhanThietBi" Type="Self.CMMS_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_BoPhanThietBi">
+              <PropertyRef Name="BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi">
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="ThietBi_CumThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="ThietBi_CumThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan">
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="1" />
+          <End Role="CMMS_KetQuaDo_BoPhan" Type="Self.CMMS_KetQuaDo_BoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="ThongSoBoPhanID" />
+            </Principal>
+            <Dependent Role="CMMS_KetQuaDo_BoPhan">
+              <PropertyRef Name="ThongSoBoPhanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao">
+          <End Role="CMMS_LoaiKhauHao" Type="Self.CMMS_LoaiKhauHao" Multiplicity="0..1" />
+          <End Role="CMMS_KhauHaoThietBi" Type="Self.CMMS_KhauHaoThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiKhauHao">
+              <PropertyRef Name="LoaiKhauHaoId" />
+            </Principal>
+            <Dependent Role="CMMS_KhauHaoThietBi">
+              <PropertyRef Name="LoaiKhauHaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhauHaoThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_KhauHaoThietBi" Type="Self.CMMS_KhauHaoThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_KhauHaoThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc">
+          <End Role="CMMS_KhuVuc" Type="Self.CMMS_KhuVuc" Multiplicity="1" />
+          <End Role="CMMS_KhuVuc_ThietBi" Type="Self.CMMS_KhuVuc_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_KhuVuc">
+              <PropertyRef Name="KhuVucId" />
+            </Principal>
+            <Dependent Role="CMMS_KhuVuc_ThietBi">
+              <PropertyRef Name="KhuVucId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="1" />
+          <End Role="CMMS_KhuVuc_ThietBi" Type="Self.CMMS_KhuVuc_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_KhuVuc_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi">
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_LinhKien_ChiTiet" Type="Self.CMMS_LinhKien_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_LinhKien_ChiTiet">
+              <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet">
+          <End Role="CMMS_DacTinhChiTiet" Type="Self.CMMS_DacTinhChiTiet" Multiplicity="0..1" />
+          <End Role="CMMS_LinhKien_ChiTiet" Type="Self.CMMS_LinhKien_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Principal>
+            <Dependent Role="CMMS_LinhKien_ChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat">
+          <End Role="CMMS_LoaiTaiLieuKyThuat" Type="Self.CMMS_LoaiTaiLieuKyThuat" Multiplicity="0..1" />
+          <End Role="CMMS_TaiLieuKyThuat_ThietBi" Type="Self.CMMS_TaiLieuKyThuat_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiTaiLieuKyThuat">
+              <PropertyRef Name="LoaiTaiLieuKyThuatId" />
+            </Principal>
+            <Dependent Role="CMMS_TaiLieuKyThuat_ThietBi">
+              <PropertyRef Name="LoaiTLKTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_TaiLieuKyThuat_ThietBi" Type="Self.CMMS_TaiLieuKyThuat_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_TaiLieuKyThuat_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_BoPhanQuanLy" Type="Self.CMMS_ThietBi_BoPhanQuanLy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_BoPhanQuanLy">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi">
+          <End Role="CMMS_ChungLoaiThietBi" Type="Self.CMMS_ChungLoaiThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ChungLoaiThietBi">
+              <PropertyRef Name="ChungLoaiThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi">
+              <PropertyRef Name="ChungLoaiThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu">
+          <End Role="CMMS_CongTyDichVu" Type="Self.CMMS_CongTyDichVu" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CongTyDichVu" Type="Self.CMMS_ThietBi_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CongTyDichVu">
+              <PropertyRef Name="CongTyDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CongTyDichVu">
+              <PropertyRef Name="CongTyDichVuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CongTyDichVu" Type="Self.CMMS_ThietBi_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CongTyDichVu">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi">
+          <End Role="CMMS_CumThietBi" Type="Self.CMMS_CumThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi">
+              <PropertyRef Name="CumThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="CumThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo">
+          <End Role="CMMS_DacTinhThongSo" Type="Self.CMMS_DacTinhThongSo" Multiplicity="0..1" />
+          <End Role="CMMS_ChungLoaiThietBi_DacTinhThongSo" Type="Self.CMMS_ChungLoaiThietBi_DacTinhThongSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhThongSo">
+              <PropertyRef Name="DacTinhThongSoId" />
+            </Principal>
+            <Dependent Role="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+              <PropertyRef Name="DacTinhThongSoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat">
+          <End Role="CMMS_DanhMuCThongSoGiamSat" Type="Self.CMMS_DanhMuCThongSoGiamSat" Multiplicity="1" />
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DanhMuCThongSoGiamSat">
+              <PropertyRef Name="ThongSoID" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="ThongSoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu">
+          <End Role="CMMS_LoaiDichVu" Type="Self.CMMS_LoaiDichVu" Multiplicity="1" />
+          <End Role="CMMS_ThongSoDichVu" Type="Self.CMMS_ThongSoDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="THT_LEANERPModelStoreContainer">
+          <EntitySet Name="CMMS_BaoCaoTonThatThoiGian" EntityType="Self.CMMS_BaoCaoTonThatThoiGian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_BoPhan_ChiTiet" EntityType="Self.CMMS_BoPhan_ChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_BoPhanThietBi" EntityType="Self.CMMS_BoPhanThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_BoPhanThietBi_LinhKienThietBi" EntityType="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ChiTietPhieuBaoTri" EntityType="Self.CMMS_ChiTietPhieuBaoTri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ChungLoaiThietBi" EntityType="Self.CMMS_ChungLoaiThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ChungLoaiThietBi_DacTinhThongSo" EntityType="Self.CMMS_ChungLoaiThietBi_DacTinhThongSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_CongTyDichVu" EntityType="Self.CMMS_CongTyDichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_CumThietBi" EntityType="Self.CMMS_CumThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_CumThietBi_BoPhanThietBi" EntityType="Self.CMMS_CumThietBi_BoPhanThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_DacTinhChiTiet" EntityType="Self.CMMS_DacTinhChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_DacTinhThongSo" EntityType="Self.CMMS_DacTinhThongSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_DanhMuCThongSoGiamSat" EntityType="Self.CMMS_DanhMuCThongSoGiamSat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_GiaiPhapBaoTri" EntityType="Self.CMMS_GiaiPhapBaoTri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_HienTuong" EntityType="Self.CMMS_HienTuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_KetQuaDo_BoPhan" EntityType="Self.CMMS_KetQuaDo_BoPhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_KhauHaoThietBi" EntityType="Self.CMMS_KhauHaoThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_KhuVuc" EntityType="Self.CMMS_KhuVuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_KhuVuc_ThietBi" EntityType="Self.CMMS_KhuVuc_ThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LinhKien_ChiTiet" EntityType="Self.CMMS_LinhKien_ChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LinhKienThietBi" EntityType="Self.CMMS_LinhKienThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LoaiDichVu" EntityType="Self.CMMS_LoaiDichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LoaiKhauHao" EntityType="Self.CMMS_LoaiKhauHao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LoaiKhiemKhuyet" EntityType="Self.CMMS_LoaiKhiemKhuyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_LoaiTaiLieuKyThuat" EntityType="Self.CMMS_LoaiTaiLieuKyThuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_NguyenNhan" EntityType="Self.CMMS_NguyenNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_NhomThietBi" EntityType="Self.CMMS_NhomThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_PhieuBaoTri" EntityType="Self.CMMS_PhieuBaoTri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_TaiLieuKyThuat_ThietBi" EntityType="Self.CMMS_TaiLieuKyThuat_ThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_TheKhiemKhuyet" EntityType="Self.CMMS_TheKhiemKhuyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThietBi" EntityType="Self.CMMS_ThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThietBi_BoPhanQuanLy" EntityType="Self.CMMS_ThietBi_BoPhanQuanLy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThietBi_CongTyDichVu" EntityType="Self.CMMS_ThietBi_CongTyDichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThietBi_CumThietBi" EntityType="Self.CMMS_ThietBi_CumThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThongSoBoPhan" EntityType="Self.CMMS_ThongSoBoPhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_ThongSoDichVu" EntityType="Self.CMMS_ThongSoDichVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CMMS_TrangThaiThietBi" EntityType="Self.CMMS_TrangThaiThietBi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_BoPhan_ChiTiet" EntitySet="CMMS_BoPhan_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet" Association="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet">
+            <End Role="CMMS_DacTinhChiTiet" EntitySet="CMMS_DacTinhChiTiet" />
+            <End Role="CMMS_BoPhan_ChiTiet" EntitySet="CMMS_BoPhan_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi" Association="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi">
+            <End Role="CMMS_LinhKienThietBi" EntitySet="CMMS_LinhKienThietBi" />
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu" Association="Self.FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu">
+            <End Role="CMMS_LoaiDichVu" EntitySet="CMMS_LoaiDichVu" />
+            <End Role="CMMS_CongTyDichVu" EntitySet="CMMS_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi" Association="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi">
+            <End Role="CMMS_BoPhanThietBi" EntitySet="CMMS_BoPhanThietBi" />
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi" Association="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi">
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan" Association="Self.FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan">
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+            <End Role="CMMS_KetQuaDo_BoPhan" EntitySet="CMMS_KetQuaDo_BoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao" Association="Self.FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao">
+            <End Role="CMMS_LoaiKhauHao" EntitySet="CMMS_LoaiKhauHao" />
+            <End Role="CMMS_KhauHaoThietBi" EntitySet="CMMS_KhauHaoThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhauHaoThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_KhauHaoThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_KhauHaoThietBi" EntitySet="CMMS_KhauHaoThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc" Association="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc">
+            <End Role="CMMS_KhuVuc" EntitySet="CMMS_KhuVuc" />
+            <End Role="CMMS_KhuVuc_ThietBi" EntitySet="CMMS_KhuVuc_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_KhuVuc_ThietBi" EntitySet="CMMS_KhuVuc_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi" Association="Self.FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi">
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+            <End Role="CMMS_LinhKien_ChiTiet" EntitySet="CMMS_LinhKien_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet" Association="Self.FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet">
+            <End Role="CMMS_DacTinhChiTiet" EntitySet="CMMS_DacTinhChiTiet" />
+            <End Role="CMMS_LinhKien_ChiTiet" EntitySet="CMMS_LinhKien_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat" Association="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat">
+            <End Role="CMMS_LoaiTaiLieuKyThuat" EntitySet="CMMS_LoaiTaiLieuKyThuat" />
+            <End Role="CMMS_TaiLieuKyThuat_ThietBi" EntitySet="CMMS_TaiLieuKyThuat_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_TaiLieuKyThuat_ThietBi" EntitySet="CMMS_TaiLieuKyThuat_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_BoPhanQuanLy" EntitySet="CMMS_ThietBi_BoPhanQuanLy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi" Association="Self.FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi">
+            <End Role="CMMS_ChungLoaiThietBi" EntitySet="CMMS_ChungLoaiThietBi" />
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu" Association="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu">
+            <End Role="CMMS_CongTyDichVu" EntitySet="CMMS_CongTyDichVu" />
+            <End Role="CMMS_ThietBi_CongTyDichVu" EntitySet="CMMS_ThietBi_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_CongTyDichVu" EntitySet="CMMS_ThietBi_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi" Association="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi">
+            <End Role="CMMS_CumThietBi" EntitySet="CMMS_CumThietBi" />
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo" Association="Self.FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo">
+            <End Role="CMMS_DacTinhThongSo" EntitySet="CMMS_DacTinhThongSo" />
+            <End Role="CMMS_ChungLoaiThietBi_DacTinhThongSo" EntitySet="CMMS_ChungLoaiThietBi_DacTinhThongSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat" Association="Self.FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat">
+            <End Role="CMMS_DanhMuCThongSoGiamSat" EntitySet="CMMS_DanhMuCThongSoGiamSat" />
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu" Association="Self.FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu">
+            <End Role="CMMS_LoaiDichVu" EntitySet="CMMS_LoaiDichVu" />
+            <End Role="CMMS_ThongSoDichVu" EntitySet="CMMS_ThongSoDichVu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="THT_LEANERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CMMS_BaoCaoTonThatThoiGian">
+          <Key>
+            <PropertyRef Name="PhieuID" />
+          </Key>
+          <Property Name="TonThatID" Type="Int64" />
+          <Property Name="PhieuID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="TuThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="DenThoiGian" Type="DateTime" Precision="3" />
+          <Property Name="NhanVienId1" Type="Int64" Nullable="false" />
+          <Property Name="NhanVienId2" Type="Int64" />
+          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayInBienBan" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhan_ChiTiet">
+          <Key>
+            <PropertyRef Name="BoPhanChiTietId" />
+          </Key>
+          <Property Name="BoPhanChiTietId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="Int64" />
+          <Property Name="DacTinhChiTietId" Type="Int64" />
+          <Property Name="GiaTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_CumThietBi_BoPhanThietBi" Relationship="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_BoPhan_ChiTiet" ToRole="CMMS_CumThietBi_BoPhanThietBi" />
+          <NavigationProperty Name="CMMS_DacTinhChiTiet" Relationship="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet" FromRole="CMMS_BoPhan_ChiTiet" ToRole="CMMS_DacTinhChiTiet" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhanThietBi">
+          <Key>
+            <PropertyRef Name="BoPhanThietBiId" />
+          </Key>
+          <Property Name="BoPhanThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaBoPhanThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenBoPhanThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VatTuId" Type="Int64" />
+          <Property Name="ThoiGianThayThe" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CMMS_CumThietBi_BoPhanThietBi" Relationship="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi" FromRole="CMMS_BoPhanThietBi" ToRole="CMMS_CumThietBi_BoPhanThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_BoPhanThietBi_LinhKienThietBi">
+          <Key>
+            <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+          </Key>
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="Int64" />
+          <Property Name="LinhKienThietBiId" Type="Int64" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_CumThietBi_BoPhanThietBi" Relationship="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_BoPhanThietBi_LinhKienThietBi" ToRole="CMMS_CumThietBi_BoPhanThietBi" />
+          <NavigationProperty Name="CMMS_LinhKienThietBi" Relationship="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi" FromRole="CMMS_BoPhanThietBi_LinhKienThietBi" ToRole="CMMS_LinhKienThietBi" />
+          <NavigationProperty Name="CMMS_LinhKien_ChiTiet" Relationship="Self.FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi" FromRole="CMMS_BoPhanThietBi_LinhKienThietBi" ToRole="CMMS_LinhKien_ChiTiet" />
+        </EntityType>
+        <EntityType Name="CMMS_ChiTietPhieuBaoTri">
+          <Key>
+            <PropertyRef Name="MaSoPhieu" />
+            <PropertyRef Name="ThietBi_CumThietBiId" />
+            <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+          </Key>
+          <Property Name="MaSoPhieu" Type="Int64" Nullable="false" />
+          <Property Name="ThietBi_CumThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="HienTuongId" Type="Int64" />
+          <Property Name="NguyenNhanId" Type="Int64" />
+          <Property Name="GhiChuNguyenNhan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GiaiPhapId" Type="Int64" />
+          <Property Name="NhanVienThucHienId" Type="Int64" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="CMMS_ChungLoaiThietBi">
+          <Key>
+            <PropertyRef Name="ChungLoaiThietBiId" />
+          </Key>
+          <Property Name="ChungLoaiThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaChungLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChungLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi" FromRole="CMMS_ChungLoaiThietBi" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+          <Key>
+            <PropertyRef Name="ThietBi_DacTinhThongSoId" />
+          </Key>
+          <Property Name="ThietBi_DacTinhThongSoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="DacTinhThongSoId" Type="Int64" />
+          <NavigationProperty Name="CMMS_DacTinhThongSo" Relationship="Self.FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo" FromRole="CMMS_ChungLoaiThietBi_DacTinhThongSo" ToRole="CMMS_DacTinhThongSo" />
+        </EntityType>
+        <EntityType Name="CMMS_CongTyDichVu">
+          <Key>
+            <PropertyRef Name="CongTyDichVuId" />
+          </Key>
+          <Property Name="CongTyDichVuId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoaiDichVu" Type="Int64" />
+          <Property Name="MaCongTy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenCongTy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_LoaiDichVu" Relationship="Self.FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu" FromRole="CMMS_CongTyDichVu" ToRole="CMMS_LoaiDichVu" />
+          <NavigationProperty Name="CMMS_ThietBi_CongTyDichVu" Relationship="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu" FromRole="CMMS_CongTyDichVu" ToRole="CMMS_ThietBi_CongTyDichVu" />
+        </EntityType>
+        <EntityType Name="CMMS_CumThietBi">
+          <Key>
+            <PropertyRef Name="CumThietBiId" />
+          </Key>
+          <Property Name="CumThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaCumThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenCumThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_ThietBi_CumThietBi" Relationship="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi" FromRole="CMMS_CumThietBi" ToRole="CMMS_ThietBi_CumThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_CumThietBi_BoPhanThietBi">
+          <Key>
+            <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+          </Key>
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBi_CumThietBiId" Type="Int64" />
+          <Property Name="BoPhanThietBiId" Type="Int64" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_BoPhan_ChiTiet" Relationship="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_CumThietBi_BoPhanThietBi" ToRole="CMMS_BoPhan_ChiTiet" />
+          <NavigationProperty Name="CMMS_BoPhanThietBi" Relationship="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi" FromRole="CMMS_CumThietBi_BoPhanThietBi" ToRole="CMMS_BoPhanThietBi" />
+          <NavigationProperty Name="CMMS_BoPhanThietBi_LinhKienThietBi" Relationship="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_CumThietBi_BoPhanThietBi" ToRole="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          <NavigationProperty Name="CMMS_ThietBi_CumThietBi" Relationship="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi" FromRole="CMMS_CumThietBi_BoPhanThietBi" ToRole="CMMS_ThietBi_CumThietBi" />
+          <NavigationProperty Name="CMMS_ThongSoBoPhan" Relationship="Self.FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_CumThietBi_BoPhanThietBi" ToRole="CMMS_ThongSoBoPhan" />
+        </EntityType>
+        <EntityType Name="CMMS_DacTinhChiTiet">
+          <Key>
+            <PropertyRef Name="DacTinhChiTietId" />
+          </Key>
+          <Property Name="DacTinhChiTietId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDacTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TenDacTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonViTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_BoPhan_ChiTiet" Relationship="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet" FromRole="CMMS_DacTinhChiTiet" ToRole="CMMS_BoPhan_ChiTiet" />
+          <NavigationProperty Name="CMMS_LinhKien_ChiTiet" Relationship="Self.FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet" FromRole="CMMS_DacTinhChiTiet" ToRole="CMMS_LinhKien_ChiTiet" />
+        </EntityType>
+        <EntityType Name="CMMS_DacTinhThongSo">
+          <Key>
+            <PropertyRef Name="DacTinhThongSoId" />
+          </Key>
+          <Property Name="DacTinhThongSoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDacTinhThongSo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDacTinhThongSo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_ChungLoaiThietBi_DacTinhThongSo" Relationship="Self.FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo" FromRole="CMMS_DacTinhThongSo" ToRole="CMMS_ChungLoaiThietBi_DacTinhThongSo" />
+        </EntityType>
+        <EntityType Name="CMMS_DanhMuCThongSoGiamSat">
+          <Key>
+            <PropertyRef Name="ThongSoID" />
+          </Key>
+          <Property Name="ThongSoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenThongSo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonViTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_ThongSoBoPhan" Relationship="Self.FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat" FromRole="CMMS_DanhMuCThongSoGiamSat" ToRole="CMMS_ThongSoBoPhan" />
+        </EntityType>
+        <EntityType Name="CMMS_GiaiPhapBaoTri">
+          <Key>
+            <PropertyRef Name="GiaiPhapId" />
+          </Key>
+          <Property Name="GiaiPhapId" Type="Int64" Nullable="false" />
+          <Property Name="MaGiaiPhap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MoTaGiaiPhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMMS_HienTuong">
+          <Key>
+            <PropertyRef Name="HienTuongId" />
+          </Key>
+          <Property Name="HienTuongId" Type="Int64" Nullable="false" />
+          <Property Name="MaHienTuong" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaHienTuong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMMS_KetQuaDo_BoPhan">
+          <Key>
+            <PropertyRef Name="ThongSoBoPhanID" />
+            <PropertyRef Name="ThoiDiemDo" />
+          </Key>
+          <Property Name="ThongSoBoPhanID" Type="Int32" Nullable="false" />
+          <Property Name="ThoiDiemDo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GiaTriDo" Type="Single" />
+          <Property Name="NguoiDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_ThongSoBoPhan" Relationship="Self.FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan" FromRole="CMMS_KetQuaDo_BoPhan" ToRole="CMMS_ThongSoBoPhan" />
+        </EntityType>
+        <EntityType Name="CMMS_KhauHaoThietBi">
+          <Key>
+            <PropertyRef Name="KhauHaoThietBiId" />
+          </Key>
+          <Property Name="KhauHaoThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="LoaiKhauHaoId" Type="Int64" />
+          <Property Name="GiaTriKhauHao" Type="Double" />
+          <Property Name="NgayKhauHao" Type="Double" />
+          <NavigationProperty Name="CMMS_LoaiKhauHao" Relationship="Self.FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao" FromRole="CMMS_KhauHaoThietBi" ToRole="CMMS_LoaiKhauHao" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_KhauHaoThietBi_CMMS_ThietBi" FromRole="CMMS_KhauHaoThietBi" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_KhuVuc">
+          <Key>
+            <PropertyRef Name="KhuVucId" />
+          </Key>
+          <Property Name="KhuVucId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaKhuVuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenKhuVuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_KhuVuc_ThietBi" Relationship="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc" FromRole="CMMS_KhuVuc" ToRole="CMMS_KhuVuc_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_KhuVuc_ThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+            <PropertyRef Name="KhuVucId" />
+          </Key>
+          <Property Name="ThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="KhuVucId" Type="Int64" Nullable="false" />
+          <Property Name="ThoiGianBatDau" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CMMS_KhuVuc" Relationship="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc" FromRole="CMMS_KhuVuc_ThietBi" ToRole="CMMS_KhuVuc" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi" FromRole="CMMS_KhuVuc_ThietBi" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_LinhKien_ChiTiet">
+          <Key>
+            <PropertyRef Name="LinhKienChiTietId" />
+          </Key>
+          <Property Name="LinhKienChiTietId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BoPhanThietBi_LinhKienThietBiId" Type="Int64" />
+          <Property Name="DacTinhChiTietId" Type="Int64" />
+          <Property Name="GiaTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_BoPhanThietBi_LinhKienThietBi" Relationship="Self.FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi" FromRole="CMMS_LinhKien_ChiTiet" ToRole="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          <NavigationProperty Name="CMMS_DacTinhChiTiet" Relationship="Self.FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet" FromRole="CMMS_LinhKien_ChiTiet" ToRole="CMMS_DacTinhChiTiet" />
+        </EntityType>
+        <EntityType Name="CMMS_LinhKienThietBi">
+          <Key>
+            <PropertyRef Name="LinhKienThietBiId" />
+          </Key>
+          <Property Name="LinhKienThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLinhKienThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenLinhKienThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VatTuId" Type="Int64" />
+          <Property Name="ThoiGianThayThe" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CMMS_BoPhanThietBi_LinhKienThietBi" Relationship="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi" FromRole="CMMS_LinhKienThietBi" ToRole="CMMS_BoPhanThietBi_LinhKienThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiDichVu">
+          <Key>
+            <PropertyRef Name="LoaiDichVuId" />
+          </Key>
+          <Property Name="LoaiDichVuId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLoaiDichVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenLoaiDichVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_CongTyDichVu" Relationship="Self.FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu" FromRole="CMMS_LoaiDichVu" ToRole="CMMS_CongTyDichVu" />
+          <NavigationProperty Name="CMMS_ThongSoDichVu" Relationship="Self.FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu" FromRole="CMMS_LoaiDichVu" ToRole="CMMS_ThongSoDichVu" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiKhauHao">
+          <Key>
+            <PropertyRef Name="LoaiKhauHaoId" />
+          </Key>
+          <Property Name="LoaiKhauHaoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaLoaiKhauHao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenKhauHao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_KhauHaoThietBi" Relationship="Self.FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao" FromRole="CMMS_LoaiKhauHao" ToRole="CMMS_KhauHaoThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiKhiemKhuyet">
+          <Key>
+            <PropertyRef Name="KhiemKhuyetID" />
+          </Key>
+          <Property Name="KhiemKhuyetID" Type="Int32" Nullable="false" />
+          <Property Name="TenKhiemKhuyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMMS_LoaiTaiLieuKyThuat">
+          <Key>
+            <PropertyRef Name="LoaiTaiLieuKyThuatId" />
+          </Key>
+          <Property Name="LoaiTaiLieuKyThuatId" Type="Int64" Nullable="false" />
+          <Property Name="MaLoaiTLKT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenLoaiTLKT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_TaiLieuKyThuat_ThietBi" Relationship="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat" FromRole="CMMS_LoaiTaiLieuKyThuat" ToRole="CMMS_TaiLieuKyThuat_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_NguyenNhan">
+          <Key>
+            <PropertyRef Name="NguyenNhanId" />
+          </Key>
+          <Property Name="NguyenNhanId" Type="Int64" Nullable="false" />
+          <Property Name="MaNguyenNhan" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NhomNguyenNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaNguyenNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMMS_NhomThietBi">
+          <Key>
+            <PropertyRef Name="NhomThietBiID" />
+          </Key>
+          <Property Name="NhomThietBiID" Type="Int64" Nullable="false" />
+          <Property Name="TenNhomThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CMMS_PhieuBaoTri">
+          <Key>
+            <PropertyRef Name="MaSoPhieu" />
+          </Key>
+          <Property Name="MaSoPhieu" Type="Int64" Nullable="false" />
+          <Property Name="ThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="NgayLap" Type="DateTime" Precision="0" />
+          <Property Name="IdNhanVienLap" Type="Int64" />
+          <Property Name="MoTaBanDau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ThietBi_CumThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="ThoiGianBatDauNgungMay" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianBatDauSua" Type="DateTime" Precision="3" />
+          <Property Name="ThoiGianSuaXong" Type="DateTime" Precision="3" />
+          <Property Name="SoGioTuLanHuTruoc" Type="Int32" />
+          <Property Name="KetQuaNghiemThu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IdNhanVienNghiemThu" Type="Int64" />
+          <Property Name="YKienNghiemThu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdNhanVienBaoTri" Type="Int64" />
+          <Property Name="KeHoach" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DinhKy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nguon" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Khoa" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CMMS_TaiLieuKyThuat_ThietBi">
+          <Key>
+            <PropertyRef Name="TaiLieuKyThuat_ThietBiId" />
+          </Key>
+          <Property Name="TaiLieuKyThuat_ThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="LoaiTLKTId" Type="Int64" />
+          <Property Name="TapTin" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LoaiTapTin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_LoaiTaiLieuKyThuat" Relationship="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat" FromRole="CMMS_TaiLieuKyThuat_ThietBi" ToRole="CMMS_LoaiTaiLieuKyThuat" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi" FromRole="CMMS_TaiLieuKyThuat_ThietBi" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_TheKhiemKhuyet">
+          <Key>
+            <PropertyRef Name="TheId" />
+          </Key>
+          <Property Name="TheId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="ThietBi_CumThietBiId" Type="Int64" />
+          <Property Name="MotaKhiemKhuyet" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KhiemKhuyetID" Type="Int32" />
+          <Property Name="NhanVienId" Type="Int64" />
+          <Property Name="MauThe" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTreo" Type="DateTime" Precision="0" />
+          <Property Name="NgayXuLyXong" Type="DateTime" Precision="0" />
+          <Property Name="BienPhapXuLy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KetQuaXuLy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDNhanVienXuLy" Type="Int64" />
+          <Property Name="MaSoPhieuBaoTri" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+          </Key>
+          <Property Name="ThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaThietBiCu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ChungLoaiThietBiId" Type="Int64" />
+          <Property Name="MaTaiSan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayMua" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Gia" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ThoiHanBaoHanh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ThongSoBaoHanh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TinhTrangMua" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DungDePhanBoSanXuat" Type="Boolean" />
+          <Property Name="Left" Type="Int32" />
+          <Property Name="Top" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Caption" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TrenLayout" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CMMS_ChungLoaiThietBi" Relationship="Self.FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_ChungLoaiThietBi" />
+          <NavigationProperty Name="CMMS_KhauHaoThietBi" Relationship="Self.FK_CMMS_KhauHaoThietBi_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_KhauHaoThietBi" />
+          <NavigationProperty Name="CMMS_KhuVuc_ThietBi" Relationship="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_KhuVuc_ThietBi" />
+          <NavigationProperty Name="CMMS_TaiLieuKyThuat_ThietBi" Relationship="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_TaiLieuKyThuat_ThietBi" />
+          <NavigationProperty Name="CMMS_ThietBi_BoPhanQuanLy" Relationship="Self.FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_ThietBi_BoPhanQuanLy" />
+          <NavigationProperty Name="CMMS_ThietBi_CongTyDichVu" Relationship="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_ThietBi_CongTyDichVu" />
+          <NavigationProperty Name="CMMS_ThietBi_CumThietBi" Relationship="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi" FromRole="CMMS_ThietBi" ToRole="CMMS_ThietBi_CumThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_BoPhanQuanLy">
+          <Key>
+            <PropertyRef Name="ThietBi_BoPhanQunLyId" />
+          </Key>
+          <Property Name="ThietBi_BoPhanQunLyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="BoPhanId" Type="Int64" />
+          <Property Name="ThoiGianNhanThietBi" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianBanGiaoThietBi" Type="DateTime" Precision="0" />
+          <Property Name="QuanLy" Type="Boolean" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi" FromRole="CMMS_ThietBi_BoPhanQuanLy" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_CongTyDichVu">
+          <Key>
+            <PropertyRef Name="ThietBi_CongTyDichVuId" />
+          </Key>
+          <Property Name="ThietBi_CongTyDichVuId" Type="Int64" Nullable="false" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="CongTyDichVuId" Type="Int64" />
+          <NavigationProperty Name="CMMS_CongTyDichVu" Relationship="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu" FromRole="CMMS_ThietBi_CongTyDichVu" ToRole="CMMS_CongTyDichVu" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi" FromRole="CMMS_ThietBi_CongTyDichVu" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_ThietBi_CumThietBi">
+          <Key>
+            <PropertyRef Name="ThietBi_CumThietBiId" />
+          </Key>
+          <Property Name="ThietBi_CumThietBiId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThietBiId" Type="Int64" />
+          <Property Name="CumThietBiId" Type="Int64" />
+          <Property Name="MoTa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_CumThietBi" Relationship="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi" FromRole="CMMS_ThietBi_CumThietBi" ToRole="CMMS_CumThietBi" />
+          <NavigationProperty Name="CMMS_CumThietBi_BoPhanThietBi" Relationship="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi" FromRole="CMMS_ThietBi_CumThietBi" ToRole="CMMS_CumThietBi_BoPhanThietBi" />
+          <NavigationProperty Name="CMMS_ThietBi" Relationship="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi" FromRole="CMMS_ThietBi_CumThietBi" ToRole="CMMS_ThietBi" />
+        </EntityType>
+        <EntityType Name="CMMS_ThongSoBoPhan">
+          <Key>
+            <PropertyRef Name="ThongSoBoPhanID" />
+          </Key>
+          <Property Name="ThongSoBoPhanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThongSoID" Type="Int32" Nullable="false" />
+          <Property Name="CumThietBi_BoPhanThietBiId" Type="Int64" />
+          <Property Name="GiaTriMax" Type="Single" />
+          <Property Name="GiaTriMin" Type="Single" />
+          <NavigationProperty Name="CMMS_CumThietBi_BoPhanThietBi" Relationship="Self.FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi" FromRole="CMMS_ThongSoBoPhan" ToRole="CMMS_CumThietBi_BoPhanThietBi" />
+          <NavigationProperty Name="CMMS_DanhMuCThongSoGiamSat" Relationship="Self.FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat" FromRole="CMMS_ThongSoBoPhan" ToRole="CMMS_DanhMuCThongSoGiamSat" />
+          <NavigationProperty Name="CMMS_KetQuaDo_BoPhan" Relationship="Self.FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan" FromRole="CMMS_ThongSoBoPhan" ToRole="CMMS_KetQuaDo_BoPhan" />
+        </EntityType>
+        <EntityType Name="CMMS_ThongSoDichVu">
+          <Key>
+            <PropertyRef Name="ThongSoDichVuId" />
+          </Key>
+          <Property Name="ThongSoDichVuId" Type="Int64" Nullable="false" />
+          <Property Name="LoaiDichVuId" Type="Int64" Nullable="false" />
+          <Property Name="TenGoi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CMMS_LoaiDichVu" Relationship="Self.FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu" FromRole="CMMS_ThongSoDichVu" ToRole="CMMS_LoaiDichVu" />
+        </EntityType>
+        <EntityType Name="CMMS_TrangThaiThietBi">
+          <Key>
+            <PropertyRef Name="ThietBiId" />
+          </Key>
+          <Property Name="ThietBiId" Type="Int64" Nullable="false" />
+          <Property Name="NhomThietBiID" Type="Int64" />
+          <Property Name="TonThatId" Type="Int64" />
+          <Property Name="ThoiGianDung" Type="DateTime" Precision="0" />
+          <Property Name="NhanVienId" Type="Int64" />
+          <Property Name="GhiChuTonThat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoTheVang" Type="Int16" />
+          <Property Name="SoTheDo" Type="Int16" />
+          <Property Name="SoTheQuaHan" Type="Int16" />
+          <Property Name="ChieuTreoThe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmBao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="X" Type="Int32" />
+          <Property Name="Y" Type="Int32" />
+          <Property Name="H" Type="Int32" />
+          <Property Name="W" Type="Int32" />
+          <Property Name="TrangThai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Caption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaSoPhieuBaoTri" Type="Int64" />
+        </EntityType>
+        <Association Name="FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhan_ChiTiet" Type="Self.CMMS_BoPhan_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhan_ChiTiet">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet">
+          <End Role="CMMS_DacTinhChiTiet" Type="Self.CMMS_DacTinhChiTiet" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhan_ChiTiet" Type="Self.CMMS_BoPhan_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhan_ChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi">
+          <End Role="CMMS_BoPhanThietBi" Type="Self.CMMS_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_BoPhanThietBi">
+              <PropertyRef Name="BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi">
+          <End Role="CMMS_LinhKienThietBi" Type="Self.CMMS_LinhKienThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LinhKienThietBi">
+              <PropertyRef Name="LinhKienThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="LinhKienThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi">
+          <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" Type="Self.CMMS_BoPhanThietBi_LinhKienThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_LinhKien_ChiTiet" Type="Self.CMMS_LinhKien_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_BoPhanThietBi_LinhKienThietBi">
+              <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_LinhKien_ChiTiet">
+              <PropertyRef Name="BoPhanThietBi_LinhKienThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi">
+          <End Role="CMMS_ChungLoaiThietBi" Type="Self.CMMS_ChungLoaiThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ChungLoaiThietBi">
+              <PropertyRef Name="ChungLoaiThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi">
+              <PropertyRef Name="ChungLoaiThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo">
+          <End Role="CMMS_DacTinhThongSo" Type="Self.CMMS_DacTinhThongSo" Multiplicity="0..1" />
+          <End Role="CMMS_ChungLoaiThietBi_DacTinhThongSo" Type="Self.CMMS_ChungLoaiThietBi_DacTinhThongSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhThongSo">
+              <PropertyRef Name="DacTinhThongSoId" />
+            </Principal>
+            <Dependent Role="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+              <PropertyRef Name="DacTinhThongSoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu">
+          <End Role="CMMS_LoaiDichVu" Type="Self.CMMS_LoaiDichVu" Multiplicity="0..1" />
+          <End Role="CMMS_CongTyDichVu" Type="Self.CMMS_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_CongTyDichVu">
+              <PropertyRef Name="LoaiDichVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu">
+          <End Role="CMMS_CongTyDichVu" Type="Self.CMMS_CongTyDichVu" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CongTyDichVu" Type="Self.CMMS_ThietBi_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CongTyDichVu">
+              <PropertyRef Name="CongTyDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CongTyDichVu">
+              <PropertyRef Name="CongTyDichVuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi">
+          <End Role="CMMS_CumThietBi" Type="Self.CMMS_CumThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi">
+              <PropertyRef Name="CumThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="CumThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi">
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="ThietBi_CumThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="ThietBi_CumThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi">
+          <End Role="CMMS_CumThietBi_BoPhanThietBi" Type="Self.CMMS_CumThietBi_BoPhanThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_CumThietBi_BoPhanThietBi">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="CumThietBi_BoPhanThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet">
+          <End Role="CMMS_DacTinhChiTiet" Type="Self.CMMS_DacTinhChiTiet" Multiplicity="0..1" />
+          <End Role="CMMS_LinhKien_ChiTiet" Type="Self.CMMS_LinhKien_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DacTinhChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Principal>
+            <Dependent Role="CMMS_LinhKien_ChiTiet">
+              <PropertyRef Name="DacTinhChiTietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat">
+          <End Role="CMMS_DanhMuCThongSoGiamSat" Type="Self.CMMS_DanhMuCThongSoGiamSat" Multiplicity="1" />
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_DanhMuCThongSoGiamSat">
+              <PropertyRef Name="ThongSoID" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="ThongSoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan">
+          <End Role="CMMS_ThongSoBoPhan" Type="Self.CMMS_ThongSoBoPhan" Multiplicity="1" />
+          <End Role="CMMS_KetQuaDo_BoPhan" Type="Self.CMMS_KetQuaDo_BoPhan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThongSoBoPhan">
+              <PropertyRef Name="ThongSoBoPhanID" />
+            </Principal>
+            <Dependent Role="CMMS_KetQuaDo_BoPhan">
+              <PropertyRef Name="ThongSoBoPhanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao">
+          <End Role="CMMS_LoaiKhauHao" Type="Self.CMMS_LoaiKhauHao" Multiplicity="0..1" />
+          <End Role="CMMS_KhauHaoThietBi" Type="Self.CMMS_KhauHaoThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiKhauHao">
+              <PropertyRef Name="LoaiKhauHaoId" />
+            </Principal>
+            <Dependent Role="CMMS_KhauHaoThietBi">
+              <PropertyRef Name="LoaiKhauHaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhauHaoThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_KhauHaoThietBi" Type="Self.CMMS_KhauHaoThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_KhauHaoThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc">
+          <End Role="CMMS_KhuVuc" Type="Self.CMMS_KhuVuc" Multiplicity="1" />
+          <End Role="CMMS_KhuVuc_ThietBi" Type="Self.CMMS_KhuVuc_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_KhuVuc">
+              <PropertyRef Name="KhuVucId" />
+            </Principal>
+            <Dependent Role="CMMS_KhuVuc_ThietBi">
+              <PropertyRef Name="KhuVucId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="1" />
+          <End Role="CMMS_KhuVuc_ThietBi" Type="Self.CMMS_KhuVuc_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_KhuVuc_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu">
+          <End Role="CMMS_LoaiDichVu" Type="Self.CMMS_LoaiDichVu" Multiplicity="1" />
+          <End Role="CMMS_ThongSoDichVu" Type="Self.CMMS_ThongSoDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Principal>
+            <Dependent Role="CMMS_ThongSoDichVu">
+              <PropertyRef Name="LoaiDichVuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat">
+          <End Role="CMMS_LoaiTaiLieuKyThuat" Type="Self.CMMS_LoaiTaiLieuKyThuat" Multiplicity="0..1" />
+          <End Role="CMMS_TaiLieuKyThuat_ThietBi" Type="Self.CMMS_TaiLieuKyThuat_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_LoaiTaiLieuKyThuat">
+              <PropertyRef Name="LoaiTaiLieuKyThuatId" />
+            </Principal>
+            <Dependent Role="CMMS_TaiLieuKyThuat_ThietBi">
+              <PropertyRef Name="LoaiTLKTId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_TaiLieuKyThuat_ThietBi" Type="Self.CMMS_TaiLieuKyThuat_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_TaiLieuKyThuat_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_BoPhanQuanLy" Type="Self.CMMS_ThietBi_BoPhanQuanLy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_BoPhanQuanLy">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CongTyDichVu" Type="Self.CMMS_ThietBi_CongTyDichVu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CongTyDichVu">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi">
+          <End Role="CMMS_ThietBi" Type="Self.CMMS_ThietBi" Multiplicity="0..1" />
+          <End Role="CMMS_ThietBi_CumThietBi" Type="Self.CMMS_ThietBi_CumThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CMMS_ThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Principal>
+            <Dependent Role="CMMS_ThietBi_CumThietBi">
+              <PropertyRef Name="ThietBiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="THT_LEANERPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CMMS_BaoCaoTonThatThoiGian" EntityType="Self.CMMS_BaoCaoTonThatThoiGian" />
+          <EntitySet Name="CMMS_BoPhan_ChiTiet" EntityType="Self.CMMS_BoPhan_ChiTiet" />
+          <EntitySet Name="CMMS_BoPhanThietBi" EntityType="Self.CMMS_BoPhanThietBi" />
+          <EntitySet Name="CMMS_BoPhanThietBi_LinhKienThietBi" EntityType="Self.CMMS_BoPhanThietBi_LinhKienThietBi" />
+          <EntitySet Name="CMMS_ChiTietPhieuBaoTri" EntityType="Self.CMMS_ChiTietPhieuBaoTri" />
+          <EntitySet Name="CMMS_ChungLoaiThietBi" EntityType="Self.CMMS_ChungLoaiThietBi" />
+          <EntitySet Name="CMMS_ChungLoaiThietBi_DacTinhThongSo" EntityType="Self.CMMS_ChungLoaiThietBi_DacTinhThongSo" />
+          <EntitySet Name="CMMS_CongTyDichVu" EntityType="Self.CMMS_CongTyDichVu" />
+          <EntitySet Name="CMMS_CumThietBi" EntityType="Self.CMMS_CumThietBi" />
+          <EntitySet Name="CMMS_CumThietBi_BoPhanThietBi" EntityType="Self.CMMS_CumThietBi_BoPhanThietBi" />
+          <EntitySet Name="CMMS_DacTinhChiTiet" EntityType="Self.CMMS_DacTinhChiTiet" />
+          <EntitySet Name="CMMS_DacTinhThongSo" EntityType="Self.CMMS_DacTinhThongSo" />
+          <EntitySet Name="CMMS_DanhMuCThongSoGiamSat" EntityType="Self.CMMS_DanhMuCThongSoGiamSat" />
+          <EntitySet Name="CMMS_GiaiPhapBaoTri" EntityType="Self.CMMS_GiaiPhapBaoTri" />
+          <EntitySet Name="CMMS_HienTuong" EntityType="Self.CMMS_HienTuong" />
+          <EntitySet Name="CMMS_KetQuaDo_BoPhan" EntityType="Self.CMMS_KetQuaDo_BoPhan" />
+          <EntitySet Name="CMMS_KhauHaoThietBi" EntityType="Self.CMMS_KhauHaoThietBi" />
+          <EntitySet Name="CMMS_KhuVuc" EntityType="Self.CMMS_KhuVuc" />
+          <EntitySet Name="CMMS_KhuVuc_ThietBi" EntityType="Self.CMMS_KhuVuc_ThietBi" />
+          <EntitySet Name="CMMS_LinhKien_ChiTiet" EntityType="Self.CMMS_LinhKien_ChiTiet" />
+          <EntitySet Name="CMMS_LinhKienThietBi" EntityType="Self.CMMS_LinhKienThietBi" />
+          <EntitySet Name="CMMS_LoaiDichVu" EntityType="Self.CMMS_LoaiDichVu" />
+          <EntitySet Name="CMMS_LoaiKhauHao" EntityType="Self.CMMS_LoaiKhauHao" />
+          <EntitySet Name="CMMS_LoaiKhiemKhuyet" EntityType="Self.CMMS_LoaiKhiemKhuyet" />
+          <EntitySet Name="CMMS_LoaiTaiLieuKyThuat" EntityType="Self.CMMS_LoaiTaiLieuKyThuat" />
+          <EntitySet Name="CMMS_NguyenNhan" EntityType="Self.CMMS_NguyenNhan" />
+          <EntitySet Name="CMMS_NhomThietBi" EntityType="Self.CMMS_NhomThietBi" />
+          <EntitySet Name="CMMS_PhieuBaoTri" EntityType="Self.CMMS_PhieuBaoTri" />
+          <EntitySet Name="CMMS_TaiLieuKyThuat_ThietBi" EntityType="Self.CMMS_TaiLieuKyThuat_ThietBi" />
+          <EntitySet Name="CMMS_TheKhiemKhuyet" EntityType="Self.CMMS_TheKhiemKhuyet" />
+          <EntitySet Name="CMMS_ThietBi" EntityType="Self.CMMS_ThietBi" />
+          <EntitySet Name="CMMS_ThietBi_BoPhanQuanLy" EntityType="Self.CMMS_ThietBi_BoPhanQuanLy" />
+          <EntitySet Name="CMMS_ThietBi_CongTyDichVu" EntityType="Self.CMMS_ThietBi_CongTyDichVu" />
+          <EntitySet Name="CMMS_ThietBi_CumThietBi" EntityType="Self.CMMS_ThietBi_CumThietBi" />
+          <EntitySet Name="CMMS_ThongSoBoPhan" EntityType="Self.CMMS_ThongSoBoPhan" />
+          <EntitySet Name="CMMS_ThongSoDichVu" EntityType="Self.CMMS_ThongSoDichVu" />
+          <EntitySet Name="CMMS_TrangThaiThietBi" EntityType="Self.CMMS_TrangThaiThietBi" />
+          <AssociationSet Name="FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_BoPhan_ChiTiet" EntitySet="CMMS_BoPhan_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet" Association="Self.FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet">
+            <End Role="CMMS_DacTinhChiTiet" EntitySet="CMMS_DacTinhChiTiet" />
+            <End Role="CMMS_BoPhan_ChiTiet" EntitySet="CMMS_BoPhan_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi" Association="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi">
+            <End Role="CMMS_BoPhanThietBi" EntitySet="CMMS_BoPhanThietBi" />
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi" Association="Self.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi">
+            <End Role="CMMS_LinhKienThietBi" EntitySet="CMMS_LinhKienThietBi" />
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi" Association="Self.FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi">
+            <End Role="CMMS_BoPhanThietBi_LinhKienThietBi" EntitySet="CMMS_BoPhanThietBi_LinhKienThietBi" />
+            <End Role="CMMS_LinhKien_ChiTiet" EntitySet="CMMS_LinhKien_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi" Association="Self.FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi">
+            <End Role="CMMS_ChungLoaiThietBi" EntitySet="CMMS_ChungLoaiThietBi" />
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo" Association="Self.FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo">
+            <End Role="CMMS_DacTinhThongSo" EntitySet="CMMS_DacTinhThongSo" />
+            <End Role="CMMS_ChungLoaiThietBi_DacTinhThongSo" EntitySet="CMMS_ChungLoaiThietBi_DacTinhThongSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu" Association="Self.FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu">
+            <End Role="CMMS_LoaiDichVu" EntitySet="CMMS_LoaiDichVu" />
+            <End Role="CMMS_CongTyDichVu" EntitySet="CMMS_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu" Association="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu">
+            <End Role="CMMS_CongTyDichVu" EntitySet="CMMS_CongTyDichVu" />
+            <End Role="CMMS_ThietBi_CongTyDichVu" EntitySet="CMMS_ThietBi_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi" Association="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi">
+            <End Role="CMMS_CumThietBi" EntitySet="CMMS_CumThietBi" />
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi" Association="Self.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi">
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi" Association="Self.FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi">
+            <End Role="CMMS_CumThietBi_BoPhanThietBi" EntitySet="CMMS_CumThietBi_BoPhanThietBi" />
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet" Association="Self.FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet">
+            <End Role="CMMS_DacTinhChiTiet" EntitySet="CMMS_DacTinhChiTiet" />
+            <End Role="CMMS_LinhKien_ChiTiet" EntitySet="CMMS_LinhKien_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat" Association="Self.FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat">
+            <End Role="CMMS_DanhMuCThongSoGiamSat" EntitySet="CMMS_DanhMuCThongSoGiamSat" />
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan" Association="Self.FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan">
+            <End Role="CMMS_ThongSoBoPhan" EntitySet="CMMS_ThongSoBoPhan" />
+            <End Role="CMMS_KetQuaDo_BoPhan" EntitySet="CMMS_KetQuaDo_BoPhan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao" Association="Self.FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao">
+            <End Role="CMMS_LoaiKhauHao" EntitySet="CMMS_LoaiKhauHao" />
+            <End Role="CMMS_KhauHaoThietBi" EntitySet="CMMS_KhauHaoThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhauHaoThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_KhauHaoThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_KhauHaoThietBi" EntitySet="CMMS_KhauHaoThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc" Association="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc">
+            <End Role="CMMS_KhuVuc" EntitySet="CMMS_KhuVuc" />
+            <End Role="CMMS_KhuVuc_ThietBi" EntitySet="CMMS_KhuVuc_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_KhuVuc_ThietBi" EntitySet="CMMS_KhuVuc_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu" Association="Self.FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu">
+            <End Role="CMMS_LoaiDichVu" EntitySet="CMMS_LoaiDichVu" />
+            <End Role="CMMS_ThongSoDichVu" EntitySet="CMMS_ThongSoDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat" Association="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat">
+            <End Role="CMMS_LoaiTaiLieuKyThuat" EntitySet="CMMS_LoaiTaiLieuKyThuat" />
+            <End Role="CMMS_TaiLieuKyThuat_ThietBi" EntitySet="CMMS_TaiLieuKyThuat_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_TaiLieuKyThuat_ThietBi" EntitySet="CMMS_TaiLieuKyThuat_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_BoPhanQuanLy" EntitySet="CMMS_ThietBi_BoPhanQuanLy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_CongTyDichVu" EntitySet="CMMS_ThietBi_CongTyDichVu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi" Association="Self.FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi">
+            <End Role="CMMS_ThietBi" EntitySet="CMMS_ThietBi" />
+            <End Role="CMMS_ThietBi_CumThietBi" EntitySet="CMMS_ThietBi_CumThietBi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="THT_LEANERPModelStoreContainer" CdmEntityContainer="THT_LEANERPEntities">
+          <EntitySetMapping Name="CMMS_BaoCaoTonThatThoiGian">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_BaoCaoTonThatThoiGian">
+              <MappingFragment StoreEntitySet="CMMS_BaoCaoTonThatThoiGian">
+                <ScalarProperty Name="TonThatID" ColumnName="TonThatID" />
+                <ScalarProperty Name="PhieuID" ColumnName="PhieuID" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="TuThoiGian" ColumnName="TuThoiGian" />
+                <ScalarProperty Name="DenThoiGian" ColumnName="DenThoiGian" />
+                <ScalarProperty Name="NhanVienId1" ColumnName="NhanVienId1" />
+                <ScalarProperty Name="NhanVienId2" ColumnName="NhanVienId2" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="NgayInBienBan" ColumnName="NgayInBienBan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_BoPhan_ChiTiet">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_BoPhan_ChiTiet">
+              <MappingFragment StoreEntitySet="CMMS_BoPhan_ChiTiet">
+                <ScalarProperty Name="BoPhanChiTietId" ColumnName="BoPhanChiTietId" />
+                <ScalarProperty Name="CumThietBi_BoPhanThietBiId" ColumnName="CumThietBi_BoPhanThietBiId" />
+                <ScalarProperty Name="DacTinhChiTietId" ColumnName="DacTinhChiTietId" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_BoPhanThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_BoPhanThietBi">
+              <MappingFragment StoreEntitySet="CMMS_BoPhanThietBi">
+                <ScalarProperty Name="BoPhanThietBiId" ColumnName="BoPhanThietBiId" />
+                <ScalarProperty Name="MaBoPhanThietBi" ColumnName="MaBoPhanThietBi" />
+                <ScalarProperty Name="TenBoPhanThietBi" ColumnName="TenBoPhanThietBi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="VatTuId" ColumnName="VatTuId" />
+                <ScalarProperty Name="ThoiGianThayThe" ColumnName="ThoiGianThayThe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_BoPhanThietBi_LinhKienThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_BoPhanThietBi_LinhKienThietBi">
+              <MappingFragment StoreEntitySet="CMMS_BoPhanThietBi_LinhKienThietBi">
+                <ScalarProperty Name="BoPhanThietBi_LinhKienThietBiId" ColumnName="BoPhanThietBi_LinhKienThietBiId" />
+                <ScalarProperty Name="CumThietBi_BoPhanThietBiId" ColumnName="CumThietBi_BoPhanThietBiId" />
+                <ScalarProperty Name="LinhKienThietBiId" ColumnName="LinhKienThietBiId" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ChiTietPhieuBaoTri">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ChiTietPhieuBaoTri">
+              <MappingFragment StoreEntitySet="CMMS_ChiTietPhieuBaoTri">
+                <ScalarProperty Name="MaSoPhieu" ColumnName="MaSoPhieu" />
+                <ScalarProperty Name="ThietBi_CumThietBiId" ColumnName="ThietBi_CumThietBiId" />
+                <ScalarProperty Name="CumThietBi_BoPhanThietBiId" ColumnName="CumThietBi_BoPhanThietBiId" />
+                <ScalarProperty Name="BoPhanThietBi_LinhKienThietBiId" ColumnName="BoPhanThietBi_LinhKienThietBiId" />
+                <ScalarProperty Name="HienTuongId" ColumnName="HienTuongId" />
+                <ScalarProperty Name="NguyenNhanId" ColumnName="NguyenNhanId" />
+                <ScalarProperty Name="GhiChuNguyenNhan" ColumnName="GhiChuNguyenNhan" />
+                <ScalarProperty Name="GiaiPhapId" ColumnName="GiaiPhapId" />
+                <ScalarProperty Name="NhanVienThucHienId" ColumnName="NhanVienThucHienId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ChungLoaiThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ChungLoaiThietBi">
+              <MappingFragment StoreEntitySet="CMMS_ChungLoaiThietBi">
+                <ScalarProperty Name="ChungLoaiThietBiId" ColumnName="ChungLoaiThietBiId" />
+                <ScalarProperty Name="MaChungLoai" ColumnName="MaChungLoai" />
+                <ScalarProperty Name="TenChungLoai" ColumnName="TenChungLoai" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ChungLoaiThietBi_DacTinhThongSo">
+              <MappingFragment StoreEntitySet="CMMS_ChungLoaiThietBi_DacTinhThongSo">
+                <ScalarProperty Name="ThietBi_DacTinhThongSoId" ColumnName="ThietBi_DacTinhThongSoId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="DacTinhThongSoId" ColumnName="DacTinhThongSoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_CongTyDichVu">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_CongTyDichVu">
+              <MappingFragment StoreEntitySet="CMMS_CongTyDichVu">
+                <ScalarProperty Name="CongTyDichVuId" ColumnName="CongTyDichVuId" />
+                <ScalarProperty Name="LoaiDichVu" ColumnName="LoaiDichVu" />
+                <ScalarProperty Name="MaCongTy" ColumnName="MaCongTy" />
+                <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_CumThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_CumThietBi">
+              <MappingFragment StoreEntitySet="CMMS_CumThietBi">
+                <ScalarProperty Name="CumThietBiId" ColumnName="CumThietBiId" />
+                <ScalarProperty Name="MaCumThietBi" ColumnName="MaCumThietBi" />
+                <ScalarProperty Name="TenCumThietBi" ColumnName="TenCumThietBi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_CumThietBi_BoPhanThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_CumThietBi_BoPhanThietBi">
+              <MappingFragment StoreEntitySet="CMMS_CumThietBi_BoPhanThietBi">
+                <ScalarProperty Name="CumThietBi_BoPhanThietBiId" ColumnName="CumThietBi_BoPhanThietBiId" />
+                <ScalarProperty Name="ThietBi_CumThietBiId" ColumnName="ThietBi_CumThietBiId" />
+                <ScalarProperty Name="BoPhanThietBiId" ColumnName="BoPhanThietBiId" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_DacTinhChiTiet">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_DacTinhChiTiet">
+              <MappingFragment StoreEntitySet="CMMS_DacTinhChiTiet">
+                <ScalarProperty Name="DacTinhChiTietId" ColumnName="DacTinhChiTietId" />
+                <ScalarProperty Name="MaDacTinh" ColumnName="MaDacTinh" />
+                <ScalarProperty Name="TenDacTinh" ColumnName="TenDacTinh" />
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_DacTinhThongSo">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_DacTinhThongSo">
+              <MappingFragment StoreEntitySet="CMMS_DacTinhThongSo">
+                <ScalarProperty Name="DacTinhThongSoId" ColumnName="DacTinhThongSoId" />
+                <ScalarProperty Name="MaDacTinhThongSo" ColumnName="MaDacTinhThongSo" />
+                <ScalarProperty Name="TenDacTinhThongSo" ColumnName="TenDacTinhThongSo" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_DanhMuCThongSoGiamSat">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_DanhMuCThongSoGiamSat">
+              <MappingFragment StoreEntitySet="CMMS_DanhMuCThongSoGiamSat">
+                <ScalarProperty Name="ThongSoID" ColumnName="ThongSoID" />
+                <ScalarProperty Name="TenThongSo" ColumnName="TenThongSo" />
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_GiaiPhapBaoTri">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_GiaiPhapBaoTri">
+              <MappingFragment StoreEntitySet="CMMS_GiaiPhapBaoTri">
+                <ScalarProperty Name="GiaiPhapId" ColumnName="GiaiPhapId" />
+                <ScalarProperty Name="MaGiaiPhap" ColumnName="MaGiaiPhap" />
+                <ScalarProperty Name="MoTaGiaiPhap" ColumnName="MoTaGiaiPhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_HienTuong">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_HienTuong">
+              <MappingFragment StoreEntitySet="CMMS_HienTuong">
+                <ScalarProperty Name="HienTuongId" ColumnName="HienTuongId" />
+                <ScalarProperty Name="MaHienTuong" ColumnName="MaHienTuong" />
+                <ScalarProperty Name="MoTaHienTuong" ColumnName="MoTaHienTuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_KetQuaDo_BoPhan">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_KetQuaDo_BoPhan">
+              <MappingFragment StoreEntitySet="CMMS_KetQuaDo_BoPhan">
+                <ScalarProperty Name="ThongSoBoPhanID" ColumnName="ThongSoBoPhanID" />
+                <ScalarProperty Name="ThoiDiemDo" ColumnName="ThoiDiemDo" />
+                <ScalarProperty Name="GiaTriDo" ColumnName="GiaTriDo" />
+                <ScalarProperty Name="NguoiDo" ColumnName="NguoiDo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_KhauHaoThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_KhauHaoThietBi">
+              <MappingFragment StoreEntitySet="CMMS_KhauHaoThietBi">
+                <ScalarProperty Name="KhauHaoThietBiId" ColumnName="KhauHaoThietBiId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="LoaiKhauHaoId" ColumnName="LoaiKhauHaoId" />
+                <ScalarProperty Name="GiaTriKhauHao" ColumnName="GiaTriKhauHao" />
+                <ScalarProperty Name="NgayKhauHao" ColumnName="NgayKhauHao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_KhuVuc">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_KhuVuc">
+              <MappingFragment StoreEntitySet="CMMS_KhuVuc">
+                <ScalarProperty Name="KhuVucId" ColumnName="KhuVucId" />
+                <ScalarProperty Name="MaKhuVuc" ColumnName="MaKhuVuc" />
+                <ScalarProperty Name="TenKhuVuc" ColumnName="TenKhuVuc" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_KhuVuc_ThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_KhuVuc_ThietBi">
+              <MappingFragment StoreEntitySet="CMMS_KhuVuc_ThietBi">
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="KhuVucId" ColumnName="KhuVucId" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LinhKien_ChiTiet">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LinhKien_ChiTiet">
+              <MappingFragment StoreEntitySet="CMMS_LinhKien_ChiTiet">
+                <ScalarProperty Name="LinhKienChiTietId" ColumnName="LinhKienChiTietId" />
+                <ScalarProperty Name="BoPhanThietBi_LinhKienThietBiId" ColumnName="BoPhanThietBi_LinhKienThietBiId" />
+                <ScalarProperty Name="DacTinhChiTietId" ColumnName="DacTinhChiTietId" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LinhKienThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LinhKienThietBi">
+              <MappingFragment StoreEntitySet="CMMS_LinhKienThietBi">
+                <ScalarProperty Name="LinhKienThietBiId" ColumnName="LinhKienThietBiId" />
+                <ScalarProperty Name="MaLinhKienThietBi" ColumnName="MaLinhKienThietBi" />
+                <ScalarProperty Name="TenLinhKienThietBi" ColumnName="TenLinhKienThietBi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="VatTuId" ColumnName="VatTuId" />
+                <ScalarProperty Name="ThoiGianThayThe" ColumnName="ThoiGianThayThe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LoaiDichVu">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LoaiDichVu">
+              <MappingFragment StoreEntitySet="CMMS_LoaiDichVu">
+                <ScalarProperty Name="LoaiDichVuId" ColumnName="LoaiDichVuId" />
+                <ScalarProperty Name="MaLoaiDichVu" ColumnName="MaLoaiDichVu" />
+                <ScalarProperty Name="TenLoaiDichVu" ColumnName="TenLoaiDichVu" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LoaiKhauHao">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LoaiKhauHao">
+              <MappingFragment StoreEntitySet="CMMS_LoaiKhauHao">
+                <ScalarProperty Name="LoaiKhauHaoId" ColumnName="LoaiKhauHaoId" />
+                <ScalarProperty Name="MaLoaiKhauHao" ColumnName="MaLoaiKhauHao" />
+                <ScalarProperty Name="TenKhauHao" ColumnName="TenKhauHao" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LoaiKhiemKhuyet">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LoaiKhiemKhuyet">
+              <MappingFragment StoreEntitySet="CMMS_LoaiKhiemKhuyet">
+                <ScalarProperty Name="KhiemKhuyetID" ColumnName="KhiemKhuyetID" />
+                <ScalarProperty Name="TenKhiemKhuyet" ColumnName="TenKhiemKhuyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_LoaiTaiLieuKyThuat">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_LoaiTaiLieuKyThuat">
+              <MappingFragment StoreEntitySet="CMMS_LoaiTaiLieuKyThuat">
+                <ScalarProperty Name="LoaiTaiLieuKyThuatId" ColumnName="LoaiTaiLieuKyThuatId" />
+                <ScalarProperty Name="MaLoaiTLKT" ColumnName="MaLoaiTLKT" />
+                <ScalarProperty Name="TenLoaiTLKT" ColumnName="TenLoaiTLKT" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_NguyenNhan">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_NguyenNhan">
+              <MappingFragment StoreEntitySet="CMMS_NguyenNhan">
+                <ScalarProperty Name="NguyenNhanId" ColumnName="NguyenNhanId" />
+                <ScalarProperty Name="MaNguyenNhan" ColumnName="MaNguyenNhan" />
+                <ScalarProperty Name="NhomNguyenNhan" ColumnName="NhomNguyenNhan" />
+                <ScalarProperty Name="MoTaNguyenNhan" ColumnName="MoTaNguyenNhan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_NhomThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_NhomThietBi">
+              <MappingFragment StoreEntitySet="CMMS_NhomThietBi">
+                <ScalarProperty Name="NhomThietBiID" ColumnName="NhomThietBiID" />
+                <ScalarProperty Name="TenNhomThietBi" ColumnName="TenNhomThietBi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_PhieuBaoTri">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_PhieuBaoTri">
+              <MappingFragment StoreEntitySet="CMMS_PhieuBaoTri">
+                <ScalarProperty Name="MaSoPhieu" ColumnName="MaSoPhieu" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="IdNhanVienLap" ColumnName="IdNhanVienLap" />
+                <ScalarProperty Name="MoTaBanDau" ColumnName="MoTaBanDau" />
+                <ScalarProperty Name="ThietBi_CumThietBiId" ColumnName="ThietBi_CumThietBiId" />
+                <ScalarProperty Name="ThoiGianBatDauNgungMay" ColumnName="ThoiGianBatDauNgungMay" />
+                <ScalarProperty Name="ThoiGianBatDauSua" ColumnName="ThoiGianBatDauSua" />
+                <ScalarProperty Name="ThoiGianSuaXong" ColumnName="ThoiGianSuaXong" />
+                <ScalarProperty Name="SoGioTuLanHuTruoc" ColumnName="SoGioTuLanHuTruoc" />
+                <ScalarProperty Name="KetQuaNghiemThu" ColumnName="KetQuaNghiemThu" />
+                <ScalarProperty Name="IdNhanVienNghiemThu" ColumnName="IdNhanVienNghiemThu" />
+                <ScalarProperty Name="YKienNghiemThu" ColumnName="YKienNghiemThu" />
+                <ScalarProperty Name="IdNhanVienBaoTri" ColumnName="IdNhanVienBaoTri" />
+                <ScalarProperty Name="KeHoach" ColumnName="KeHoach" />
+                <ScalarProperty Name="DinhKy" ColumnName="DinhKy" />
+                <ScalarProperty Name="Nguon" ColumnName="Nguon" />
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_TaiLieuKyThuat_ThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_TaiLieuKyThuat_ThietBi">
+              <MappingFragment StoreEntitySet="CMMS_TaiLieuKyThuat_ThietBi">
+                <ScalarProperty Name="TaiLieuKyThuat_ThietBiId" ColumnName="TaiLieuKyThuat_ThietBiId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="LoaiTLKTId" ColumnName="LoaiTLKTId" />
+                <ScalarProperty Name="TapTin" ColumnName="TapTin" />
+                <ScalarProperty Name="LoaiTapTin" ColumnName="LoaiTapTin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_TheKhiemKhuyet">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_TheKhiemKhuyet">
+              <MappingFragment StoreEntitySet="CMMS_TheKhiemKhuyet">
+                <ScalarProperty Name="TheId" ColumnName="TheId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="ThietBi_CumThietBiId" ColumnName="ThietBi_CumThietBiId" />
+                <ScalarProperty Name="MotaKhiemKhuyet" ColumnName="MotaKhiemKhuyet" />
+                <ScalarProperty Name="KhiemKhuyetID" ColumnName="KhiemKhuyetID" />
+                <ScalarProperty Name="NhanVienId" ColumnName="NhanVienId" />
+                <ScalarProperty Name="MauThe" ColumnName="MauThe" />
+                <ScalarProperty Name="NgayTreo" ColumnName="NgayTreo" />
+                <ScalarProperty Name="NgayXuLyXong" ColumnName="NgayXuLyXong" />
+                <ScalarProperty Name="BienPhapXuLy" ColumnName="BienPhapXuLy" />
+                <ScalarProperty Name="KetQuaXuLy" ColumnName="KetQuaXuLy" />
+                <ScalarProperty Name="IDNhanVienXuLy" ColumnName="IDNhanVienXuLy" />
+                <ScalarProperty Name="MaSoPhieuBaoTri" ColumnName="MaSoPhieuBaoTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThietBi">
+              <MappingFragment StoreEntitySet="CMMS_ThietBi">
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+                <ScalarProperty Name="MaThietBiCu" ColumnName="MaThietBiCu" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="ChungLoaiThietBiId" ColumnName="ChungLoaiThietBiId" />
+                <ScalarProperty Name="MaTaiSan" ColumnName="MaTaiSan" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="ThoiHanBaoHanh" ColumnName="ThoiHanBaoHanh" />
+                <ScalarProperty Name="ThongSoBaoHanh" ColumnName="ThongSoBaoHanh" />
+                <ScalarProperty Name="TinhTrangMua" ColumnName="TinhTrangMua" />
+                <ScalarProperty Name="DungDePhanBoSanXuat" ColumnName="DungDePhanBoSanXuat" />
+                <ScalarProperty Name="Left" ColumnName="Left" />
+                <ScalarProperty Name="Top" ColumnName="Top" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="TrenLayout" ColumnName="TrenLayout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThietBi_BoPhanQuanLy">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThietBi_BoPhanQuanLy">
+              <MappingFragment StoreEntitySet="CMMS_ThietBi_BoPhanQuanLy">
+                <ScalarProperty Name="ThietBi_BoPhanQunLyId" ColumnName="ThietBi_BoPhanQunLyId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="BoPhanId" ColumnName="BoPhanId" />
+                <ScalarProperty Name="ThoiGianNhanThietBi" ColumnName="ThoiGianNhanThietBi" />
+                <ScalarProperty Name="ThoiGianBanGiaoThietBi" ColumnName="ThoiGianBanGiaoThietBi" />
+                <ScalarProperty Name="QuanLy" ColumnName="QuanLy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThietBi_CongTyDichVu">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThietBi_CongTyDichVu">
+              <MappingFragment StoreEntitySet="CMMS_ThietBi_CongTyDichVu">
+                <ScalarProperty Name="ThietBi_CongTyDichVuId" ColumnName="ThietBi_CongTyDichVuId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="CongTyDichVuId" ColumnName="CongTyDichVuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThietBi_CumThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThietBi_CumThietBi">
+              <MappingFragment StoreEntitySet="CMMS_ThietBi_CumThietBi">
+                <ScalarProperty Name="ThietBi_CumThietBiId" ColumnName="ThietBi_CumThietBiId" />
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="CumThietBiId" ColumnName="CumThietBiId" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThongSoBoPhan">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThongSoBoPhan">
+              <MappingFragment StoreEntitySet="CMMS_ThongSoBoPhan">
+                <ScalarProperty Name="ThongSoBoPhanID" ColumnName="ThongSoBoPhanID" />
+                <ScalarProperty Name="ThongSoID" ColumnName="ThongSoID" />
+                <ScalarProperty Name="CumThietBi_BoPhanThietBiId" ColumnName="CumThietBi_BoPhanThietBiId" />
+                <ScalarProperty Name="GiaTriMax" ColumnName="GiaTriMax" />
+                <ScalarProperty Name="GiaTriMin" ColumnName="GiaTriMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_ThongSoDichVu">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_ThongSoDichVu">
+              <MappingFragment StoreEntitySet="CMMS_ThongSoDichVu">
+                <ScalarProperty Name="ThongSoDichVuId" ColumnName="ThongSoDichVuId" />
+                <ScalarProperty Name="LoaiDichVuId" ColumnName="LoaiDichVuId" />
+                <ScalarProperty Name="TenGoi" ColumnName="TenGoi" />
+                <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CMMS_TrangThaiThietBi">
+            <EntityTypeMapping TypeName="THT_LEANERPModel.CMMS_TrangThaiThietBi">
+              <MappingFragment StoreEntitySet="CMMS_TrangThaiThietBi">
+                <ScalarProperty Name="ThietBiId" ColumnName="ThietBiId" />
+                <ScalarProperty Name="NhomThietBiID" ColumnName="NhomThietBiID" />
+                <ScalarProperty Name="TonThatId" ColumnName="TonThatId" />
+                <ScalarProperty Name="ThoiGianDung" ColumnName="ThoiGianDung" />
+                <ScalarProperty Name="NhanVienId" ColumnName="NhanVienId" />
+                <ScalarProperty Name="GhiChuTonThat" ColumnName="GhiChuTonThat" />
+                <ScalarProperty Name="SoTheVang" ColumnName="SoTheVang" />
+                <ScalarProperty Name="SoTheDo" ColumnName="SoTheDo" />
+                <ScalarProperty Name="SoTheQuaHan" ColumnName="SoTheQuaHan" />
+                <ScalarProperty Name="ChieuTreoThe" ColumnName="ChieuTreoThe" />
+                <ScalarProperty Name="AmBao" ColumnName="AmBao" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="MaSoPhieuBaoTri" ColumnName="MaSoPhieuBaoTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

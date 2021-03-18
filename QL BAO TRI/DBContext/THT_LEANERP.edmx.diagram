@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3d04e63d4c242aa938fb5e8e97cbab7" Name="Diagram1" ZoomLevel="125">
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_BaoCaoTonThatThoiGian" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_BoPhan_ChiTiet" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_BoPhanThietBi" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_BoPhanThietBi_LinhKienThietBi" Width="1.5" PointX="12.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ChiTietPhieuBaoTri" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ChungLoaiThietBi" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ChungLoaiThietBi_DacTinhThongSo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_CongTyDichVu" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_CumThietBi" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_CumThietBi_BoPhanThietBi" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_DacTinhChiTiet" Width="1.5" PointX="12.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_DacTinhThongSo" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_DanhMuCThongSoGiamSat" Width="1.5" PointX="13.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_GiaiPhapBaoTri" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_HienTuong" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_KetQuaDo_BoPhan" Width="1.5" PointX="18" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_KhauHaoThietBi" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_KhuVuc" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_KhuVuc_ThietBi" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LinhKien_ChiTiet" Width="1.5" PointX="15" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LinhKienThietBi" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LoaiDichVu" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LoaiKhauHao" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LoaiKhiemKhuyet" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_LoaiTaiLieuKyThuat" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_NguyenNhan" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_NhomThietBi" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_PhieuBaoTri" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_TaiLieuKyThuat_ThietBi" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_TheKhiemKhuyet" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThietBi" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThietBi_BoPhanQuanLy" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThietBi_CongTyDichVu" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThietBi_CumThietBi" Width="2.75" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThongSoBoPhan" Width="1.5" PointX="15.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_ThongSoDichVu" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="THT_LEANERPModel.CMMS_TrangThaiThietBi" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_BoPhan_ChiTiet_CMMS_CumThietBi_BoPhanThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_BoPhan_ChiTiet_CMMS_DacTinhChiTiet" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_BoPhanThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_CumThietBi_BoPhanThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_BoPhanThietBi_LinhKienThietBi_CMMS_LinhKienThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_LinhChiChiTiet_CMMS_BoPhanThietBi_LinhKienThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_CMMS_ChungLoaiThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_DacTinhThongSo_CMMS_DacTinhThongSo" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_CongTyDichVu_CMMS_LoaiDichVu" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_CongTyDichVu_CMMS_CongTyDichVu" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_CumThietBi_CMMS_CumThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_CumThietBi_BoPhanThietBi_CMMS_ThietBi_CumThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThongSoBoPhan_CMMS_CumThietBi_BoPhanThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_LinhChiChiTiet_CMMS_DacTinhChiTiet" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThongSoBoPhan_CMMS_DanhMuCThongSoGiamSat" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_KetQuaDo_BoPhan_CMMS_ThongSoBoPhan" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_KhauHaoThietBi_CMMS_LoaiKhauHao" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_KhauHaoThietBi_CMMS_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_KhuVuc_ThietBi_CMMS_KhuVuc" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_KhuVuc_ThietBi_CMMS_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThongSoDichVu_CMMS_LoaiDichVu" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_LoaiTaiLieuKyThuat" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_TaiLieuKyThuat_ThietBi_CMMS_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_BoPhanQuanLy_CMMS_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_CongTyDichVu_CMMS_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="THT_LEANERPModel.FK_CMMS_ThietBi_CumThietBi_CMMS_ThietBi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
