@@ -7,11 +7,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using QL_BAO_TRI.DBContext;
+using System.Linq;
+using QL_BAO_TRI.Classes;
 
 namespace QL_BAO_TRI.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        THTDataEntities db_THTData = new THTDataEntities();
         #region danh cho duy chuyen cac nut
         double FirstXPos, FirstYPos, FirstArrowXPos, FirstArrowYPos;
         object MovingObject;
@@ -43,17 +47,71 @@ namespace QL_BAO_TRI.ViewModels
         {
             Canvas DesigningCanvas = parameter as Canvas;
 
-            SimpleButton btn = new SimpleButton();
-            btn.Height = 100;
-            btn.Width = 200;
+            #region load so do may
+            var danhmucmay = db_THTData.tbdanhMucMays.Where(x => x.MaCN == "CPD" && x.NhaXuong == "Nhuom" && x.X != null).ToList();
+            if (danhmucmay.Count>0)
+            {
+                foreach (var item in danhmucmay)
+                {
+                    double h = Convert.ToDouble(item.H / 15);
+                    double w = Convert.ToDouble(item.W / 15);
+                    double x = Convert.ToDouble(item.X / 15);
+                    double y = Convert.ToDouble(item.Y / 15);
 
+                    SimpleButton btn = new SimpleButton();
+                    btn.Height = h;
+                    btn.Width = w;
+                    btn.Tag = item.MaMay;
+                    btn.ToolTip = item.TenMay;
+                    btn.FontSize = 10;
+                    btn.Padding= new Thickness(0, 0, 0, 0);
+                    //btn.Content = "Hello World!";
+                    Canvas.SetTop(btn, y);
+                    Canvas.SetLeft(btn, x);
+                    //event nhan vao may
+                    btn.Click += Btn_Click;
+                    //kiem tra trang thay may chay
+                    
+                    switch (item.TrangThai)
+                    {
+                        case "Chay":
+                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#A2EB96"); 
+                            break;
+                        case "Dung":
+                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#C0C0C0");
+                            break;
+                        case "Sap":
+                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EBDE4A");
+                            break;
+                        case "Hu":
+                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5363D");
+                            break;
+                        case "Sua":
+                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5427F");
+                            break;
+                        default:
+                            break;
+                    }
+                    //tenmay
+                    if (item.MayCaption.Contains("@"))
+                    {
+                        string tenmay;
+                        tenmay = item.MayCaption.Substring(3);
+                        tenmay = TienIchFunctions.VniToUni(tenmay);
+                        btn.Content = tenmay;
+                    }
+                    else
+                    {
+                        btn.Content = TienIchFunctions.VniToUni(item.MayCaption);
+                    }
+
+
+                    DesigningCanvas.Children.Add(btn);
+                }
+            }
+            #endregion
             // Add a "Hello World!" text element to the Canvas
-            SimpleButton txt1 = new SimpleButton();
-            txt1.FontSize = 14;
-            txt1.Content = "Hello World!";
-            Canvas.SetTop(txt1, 100);
-            Canvas.SetLeft(txt1, 10);
-            DesigningCanvas.Children.Add(txt1);
+           
 
             #region  nhan chon duy chuyen cac contol
             /*
@@ -118,8 +176,14 @@ namespace QL_BAO_TRI.ViewModels
             DesigningCanvas.Children.Add(CurrentPosition);
             #endregion
         }
+
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            SimpleButton btn = (SimpleButton)sender;
+            MessageBox.Show(btn.Tag.ToString());
+        }
         #region event duy chuyen cac contol
-        
+
         #region cac even nhan chon
         void PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
