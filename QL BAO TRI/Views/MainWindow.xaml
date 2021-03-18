@@ -5,17 +5,20 @@
     xmlns:ViewModels="clr-namespace:QL_BAO_TRI.ViewModels" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     x:Class="QL_BAO_TRI.Views.MainWindow"
     Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+    Name="frMain"
     >
     <dx:ThemedWindow.DataContext>
         <ViewModels:MainViewModel/>
     </dx:ThemedWindow.DataContext>
 
     <Grid>
-        <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas">
-            <dx:SimpleButton Height="41" Width="93" Canvas.Left="10" Canvas.Top="10"/>
+        <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas"
+                >
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadForm_Command}" CommandParameter="{Binding ElementName=DesigningCanvas}"/>
+            </dxmvvm:Interaction.Behaviors>
+            <!--<dx:SimpleButton Height="41" Width="93" Canvas.Left="10" Canvas.Top="10" />-->
         </Canvas>
     </Grid>
-    <dxmvvm:Interaction.Behaviors>
-        <dxmvvm:EventToCommand Command="{Binding LoadForm_Command}" CommandParameter="DesigningCanvas" EventName="Loaded" />
-    </dxmvvm:Interaction.Behaviors>
+    
 </dx:ThemedWindow>
