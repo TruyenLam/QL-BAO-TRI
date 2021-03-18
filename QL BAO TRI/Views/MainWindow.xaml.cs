@@ -25,6 +25,7 @@ namespace QL_BAO_TRI.Views
             InitializeComponent();
            
         }
-       
+
+        
     }
 }

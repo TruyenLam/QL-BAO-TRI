@@ -16,6 +16,23 @@ namespace QL_BAO_TRI.ViewModels
     public class MainViewModel : ViewModelBase
     {
         THTDataEntities db_THTData = new THTDataEntities();
+        #region bien toan cuc 
+        public double left_menu
+        {
+            get { return GetProperty(() => left_menu); }
+            set { SetProperty(() => left_menu, value); }
+        }
+        public double top_menu
+        {
+            get { return GetProperty(() => top_menu); }
+            set { SetProperty(() => top_menu, value); }
+        }
+        public string visiblity_chaymay
+        {
+            get { return GetProperty(() => visiblity_chaymay); }
+            set { SetProperty(() => visiblity_chaymay, value); }
+        }
+        #endregion
         #region danh cho duy chuyen cac nut
         double FirstXPos, FirstYPos, FirstArrowXPos, FirstArrowYPos;
         object MovingObject;
@@ -45,6 +62,7 @@ namespace QL_BAO_TRI.ViewModels
         #region xu ly cac command
         void Load_form(object parameter)
         {
+            visiblity_chaymay = "Hidden";
             Canvas DesigningCanvas = parameter as Canvas;
 
             #region load so do may
@@ -180,7 +198,16 @@ namespace QL_BAO_TRI.ViewModels
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
             SimpleButton btn = (SimpleButton)sender;
-            MessageBox.Show(btn.Tag.ToString());
+            //double left = btn.GetLeft();
+            //double top = btn.GetTop();
+            //MessageBox.Show(left.ToString() + "---" +top.ToString());
+             left_menu = btn.GetLeft()+btn.GetRealWidth();
+            top_menu = btn.GetTop();
+            if (left_menu >((1366/2)+ (1366 / 4)))
+            {
+                left_menu = btn.GetLeft() - btn.GetRealWidth()-230;
+            }
+            visiblity_chaymay = "Visible";
         }
         #region event duy chuyen cac contol
 
@@ -273,6 +300,8 @@ namespace QL_BAO_TRI.ViewModels
             FirstArrowXPos = e.GetPosition((sender as Control).Parent as Control).X - FirstXPos;
             FirstArrowYPos = e.GetPosition((sender as Control).Parent as Control).Y - FirstYPos;
             MovingObject = sender;
+
+            visiblity_chaymay = "Hidden";
         }
         #endregion
         #endregion

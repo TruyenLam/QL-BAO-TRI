@@ -3,22 +3,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:ViewModels="clr-namespace:QL_BAO_TRI.ViewModels" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxca="http://schemas.devexpress.com/winfx/2008/xaml/carousel"
     x:Class="QL_BAO_TRI.Views.MainWindow"
     Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
-    Name="frMain"
+    x:Name="frMain"
     >
     <dx:ThemedWindow.DataContext>
         <ViewModels:MainViewModel/>
     </dx:ThemedWindow.DataContext>
 
     <Grid>
-        <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas"
+
+        <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas" 
                 >
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadForm_Command}" CommandParameter="{Binding ElementName=DesigningCanvas}"/>
             </dxmvvm:Interaction.Behaviors>
             <!--<dx:SimpleButton Height="41" Width="93" Canvas.Left="10" Canvas.Top="10" />-->
+
         </Canvas>
+
+        <Canvas  >
+            <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay}">
+                <dx:SimpleButton Content="Chạy"/>
+                <dx:SimpleButton Content="Dừng"/>
+                <dx:SimpleButton Content="+Tổn Thất"/>
+                <dx:SimpleButton Content="Xem phiếu bảo trì"/>
+            </StackPanel>
+        </Canvas>
+
     </Grid>
-    
+
 </dx:ThemedWindow>
