@@ -1,4 +1,4 @@
-﻿<dx:ThemedWindow
+﻿<dx:ThemedWindow xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
@@ -25,6 +25,26 @@
         </Canvas>
 
         <Canvas  >
+            <dxwui:HamburgerMenu ViewState="CompactInline">
+                <dxwui:HamburgerMenuNavigationButton Content="Home"  />
+                <dxwui:HamburgerMenuItemSeparator/>
+                <dxwui:HamburgerSubMenu Content="Menu" >
+                    <dxwui:HamburgerSubMenu.Items>
+                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 1" PreviewContent="PreviewItem 1" ShowInPreview="True" SelectOnClick="False" RightContent="RC"/>
+                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 2" PreviewContent="PreviewItem 2" ShowInPreview="True" SelectOnClick="False"/>
+                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 3"/>
+                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 4" ShowPreviewMark="True"/>
+                    </dxwui:HamburgerSubMenu.Items>
+                </dxwui:HamburgerSubMenu>
+                <dxwui:HamburgerMenuHyperlinkButton NavigateUri="https://www.devexpress.com/" Content="More information..." Placement="Bottom"/>
+                <dxwui:HamburgerMenuNavigationButton  Content="About" Placement="Bottom" />
+                <dxwui:HamburgerMenu.BottomBarItems>
+                    <dxwui:HamburgerMenuBottomBarNavigationButton   Placement="Right"/>
+                    <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
+                    <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
+                    <dxwui:HamburgerMenuBottomBarCheckBox />
+                </dxwui:HamburgerMenu.BottomBarItems>
+            </dxwui:HamburgerMenu>
             <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay}">
                 <dx:SimpleButton Content="Chạy"/>
                 <dx:SimpleButton Content="Dừng"/>
@@ -32,7 +52,7 @@
                 <dx:SimpleButton Content="Xem phiếu bảo trì"/>
             </StackPanel>
         </Canvas>
-
+        
     </Grid>
 
 </dx:ThemedWindow>
