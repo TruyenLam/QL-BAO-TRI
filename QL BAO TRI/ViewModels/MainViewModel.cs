@@ -33,6 +33,9 @@ namespace QL_BAO_TRI.ViewModels
             set { SetProperty(() => visiblity_chaymay, value); }
         }
         #endregion
+        #region timer cho chaymay
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        #endregion
         #region danh cho duy chuyen cac nut
         double FirstXPos, FirstYPos, FirstArrowXPos, FirstArrowYPos;
         object MovingObject;
@@ -208,6 +211,9 @@ namespace QL_BAO_TRI.ViewModels
                 left_menu = btn.GetLeft() - btn.GetRealWidth()-230;
             }
             visiblity_chaymay = "Visible";
+
+            //5s tắt menu chay may
+            timer_ChayMay();
         }
         #region event duy chuyen cac contol
 
@@ -301,10 +307,28 @@ namespace QL_BAO_TRI.ViewModels
             FirstArrowYPos = e.GetPosition((sender as Control).Parent as Control).Y - FirstYPos;
             MovingObject = sender;
 
-            visiblity_chaymay = "Hidden";
+            //visiblity_chaymay = "Hidden";
         }
         #endregion
         #endregion
+        #endregion
+        #region code timer
+        private void timer_ChayMay()
+        {
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Start();
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //5s chạy 1 lần
+            // code goes here 
+            visiblity_chaymay = Visibility.Collapsed.ToString();
+            //MessageBox.Show("tat ud");
+            dispatcherTimer.Stop();
+            //dừng không cho chạy nữa
+        }
+
         #endregion
     }
 }

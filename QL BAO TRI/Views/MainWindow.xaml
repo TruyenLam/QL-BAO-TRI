@@ -45,7 +45,7 @@
                     <dxwui:HamburgerMenuBottomBarCheckBox />
                 </dxwui:HamburgerMenu.BottomBarItems>
             </dxwui:HamburgerMenu>
-            <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay}">
+            <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay, Mode=TwoWay}">
                 <dx:SimpleButton Content="Chạy"/>
                 <dx:SimpleButton Content="Dừng"/>
                 <dx:SimpleButton Content="+Tổn Thất"/>
