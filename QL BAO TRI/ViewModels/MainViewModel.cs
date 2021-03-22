@@ -329,6 +329,7 @@ namespace QL_BAO_TRI.ViewModels
                     }
                 }
             }
+            Timer_btn.Stop();
             //Load_soDoMay();
         }
         #endregion
