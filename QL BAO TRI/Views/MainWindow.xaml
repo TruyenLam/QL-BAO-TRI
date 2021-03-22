@@ -46,8 +46,9 @@
                 </dxwui:HamburgerMenu.BottomBarItems>
             </dxwui:HamburgerMenu>
             <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay, Mode=TwoWay}">
-                <dx:SimpleButton Content="Chạy"/>
-                <dx:SimpleButton Content="Dừng"/>
+                <dx:SimpleButton Content="{Binding text_chay_dung,TargetNullValue=Chay}" Command="{Binding BtnChay_Dungmay_Command}"/>
+                <dx:SimpleButton Content="Máy hư"/>
+                <dx:SimpleButton Content="Treo thẻ"/>
                 <dx:SimpleButton Content="+Tổn Thất"/>
                 <dx:SimpleButton Content="Xem phiếu bảo trì"/>
             </StackPanel>
