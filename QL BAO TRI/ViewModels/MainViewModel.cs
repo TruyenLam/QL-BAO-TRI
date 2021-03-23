@@ -21,7 +21,7 @@ namespace QL_BAO_TRI.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        THTDataEntities db_THTData = new THTDataEntities();
+        THTDataEntities db_THTData = THTData_DataProvider.Ins.DB;
         #region bien toan cuc 
         public double left_menu
         {
@@ -60,7 +60,13 @@ namespace QL_BAO_TRI.ViewModels
         DispatcherTimer TimerSoDoMay = new DispatcherTimer();
         DispatcherTimer Timer_btn = new DispatcherTimer();
         #endregion
-
+        #region list tbDanhMucLoaiTonThat
+        public ObservableCollection<tbDanhMucLoaiTonThat> List_LoaiTonthat {
+            get { return GetProperty(() => List_LoaiTonthat); }
+            set { SetProperty(() => List_LoaiTonthat, value); }
+        } 
+        public ObservableCollection<tbDanhMucLoaiTonThat> List_Item_LoaiTonthat { get; set; } = new ObservableCollection<tbDanhMucLoaiTonThat>();
+        #endregion
 
 
         protected override void OnInitializeInDesignMode()
@@ -71,7 +77,7 @@ namespace QL_BAO_TRI.ViewModels
         protected override void OnInitializeInRuntime()
         {
             //tren giao dien người dung
-            //_visibility = Visibility.Visible;
+            List_LoaiTonthat = new ObservableCollection<tbDanhMucLoaiTonThat>();
         }
         #region Khai báo Command
         public DelegateCommand BtnTreoThe { get; private set; }
@@ -97,9 +103,20 @@ namespace QL_BAO_TRI.ViewModels
                 if (May_Chon.TrangThai.Equals("Chay"))
                 {
                     //mo bang chon  ly do dung may
-                    string sqlquery = @"UPDATE tbDanhMucMay SET TrangThai ='Dung',MaTonThat =0 , LyDoDung ='' WHERE (MaMay =" + May_Chon.MaMay + ")";
-                    int update = db_THTData.Database.ExecuteSqlCommand(sqlquery);
-                    May_Chon.TrangThai = "Dung";
+                    //load loai ton that
+                    var listtt = db_THTData.tbDanhMucLoaiTonThats.Where(x => x.LoaiMay.Equals(May_Chon.LoaiMay)).ToList();
+                    List_LoaiTonthat = new ObservableCollection<tbDanhMucLoaiTonThat>(listtt);
+                    DanhMucTonThatWindow fr_tonthat = new DanhMucTonThatWindow();
+                    fr_tonthat.ShowDialog();
+                    //if (List_Item_LoaiTonthat.Count>0)
+                    //{
+                    //    MessageBox.Show(List_Item_LoaiTonthat[0].MaTonThat.ToString());
+                    //}
+                    
+                    ////------------------------
+                    //string sqlquery = @"UPDATE tbDanhMucMay SET TrangThai ='Dung',MaTonThat =0 , LyDoDung ='' WHERE (MaMay =" + May_Chon.MaMay + ")";
+                    //int update = db_THTData.Database.ExecuteSqlCommand(sqlquery);
+                    //May_Chon.TrangThai = "Dung";
                 }
                 else
                 {
