@@ -44,7 +44,14 @@ namespace QL_BAO_TRI.ViewModels
             get { return GetProperty(() => text_chay_dung); }
             set { SetProperty(() => text_chay_dung, value); }
         }
-        
+        #region list tbDanhMucLoaiTonThat
+        //public ObservableCollection<tbDanhMucLoaiTonThat> List_LoaiTonthat
+        //{
+        //    get { return GetProperty(() => List_LoaiTonthat); }
+        //    set { SetProperty(() => List_LoaiTonthat, value); }
+        //}
+        #endregion
+
         #region cavas sodoxuong 
         public Canvas DesigningCanvas { get; set; } = new Canvas();
         //the vang
@@ -60,13 +67,7 @@ namespace QL_BAO_TRI.ViewModels
         DispatcherTimer TimerSoDoMay = new DispatcherTimer();
         DispatcherTimer Timer_btn = new DispatcherTimer();
         #endregion
-        #region list tbDanhMucLoaiTonThat
-        public ObservableCollection<tbDanhMucLoaiTonThat> List_LoaiTonthat {
-            get { return GetProperty(() => List_LoaiTonthat); }
-            set { SetProperty(() => List_LoaiTonthat, value); }
-        } 
-        public ObservableCollection<tbDanhMucLoaiTonThat> List_Item_LoaiTonthat { get; set; } = new ObservableCollection<tbDanhMucLoaiTonThat>();
-        #endregion
+       
 
 
         protected override void OnInitializeInDesignMode()
@@ -77,7 +78,7 @@ namespace QL_BAO_TRI.ViewModels
         protected override void OnInitializeInRuntime()
         {
             //tren giao dien người dung
-            List_LoaiTonthat = new ObservableCollection<tbDanhMucLoaiTonThat>();
+            
         }
         #region Khai báo Command
         public DelegateCommand BtnTreoThe { get; private set; }
@@ -104,19 +105,29 @@ namespace QL_BAO_TRI.ViewModels
                 {
                     //mo bang chon  ly do dung may
                     //load loai ton that
-                    var listtt = db_THTData.tbDanhMucLoaiTonThats.Where(x => x.LoaiMay.Equals(May_Chon.LoaiMay)).ToList();
-                    List_LoaiTonthat = new ObservableCollection<tbDanhMucLoaiTonThat>(listtt);
-                    DanhMucTonThatWindow fr_tonthat = new DanhMucTonThatWindow();
+                    Models.May_Dang_Chon_Class.LoaiMay = May_Chon.LoaiMay;
+                    Models.May_Dang_Chon_Class.MaMay = May_Chon.MaMay;
+                    TonThatWindow fr_tonthat = new TonThatWindow();
                     fr_tonthat.ShowDialog();
+                    
+                    // lam xong thi xoa luu may nay đi
+                    
                     //if (List_Item_LoaiTonthat.Count>0)
                     //{
                     //    MessageBox.Show(List_Item_LoaiTonthat[0].MaTonThat.ToString());
                     //}
-                    
+                    //Thread thread5 = new Thread(new ThreadStart(ShowSubForm));
+
+                    //thread5.SetApartmentState(ApartmentState.STA);
+                    //thread5.IsBackground = true;
+                    //thread5.Start();
                     ////------------------------
                     //string sqlquery = @"UPDATE tbDanhMucMay SET TrangThai ='Dung',MaTonThat =0 , LyDoDung ='' WHERE (MaMay =" + May_Chon.MaMay + ")";
                     //int update = db_THTData.Database.ExecuteSqlCommand(sqlquery);
-                    //May_Chon.TrangThai = "Dung";
+                    May_Chon.TrangThai = Models.May_Dang_Chon_Class.TrangThai;
+                    Models.May_Dang_Chon_Class.LoaiMay = "";
+                    Models.May_Dang_Chon_Class.MaMay = 0;
+                    Models.May_Dang_Chon_Class.TrangThai = "";
                 }
                 else
                 {
@@ -127,10 +138,22 @@ namespace QL_BAO_TRI.ViewModels
                 visiblity_chaymay = "Hidden";
                 
             }
+            //cap nhat mau sac cho may dang chay
             capnhat_btn_may();
         }
 
-       
+        //private void ShowSubForm()
+        //{
+        //    List_LoaiTonthat = new ObservableCollection<tbDanhMucLoaiTonThat>(db_THTData.tbDanhMucLoaiTonThats.Where(x => x.LoaiMay.Contains(Models.May_Dang_Chon_Class.LoaiMay)).ToList());
+        //    foreach (var item in List_LoaiTonthat)
+        //    {
+        //        item.TenTonThat = TienIchFunctions.VniToUni(item.TenTonThat);
+        //    }
+        //    new TonThatWindow().Show();
+
+        //    //Nói rằng đây là một Window độc lập
+        //    System.Windows.Threading.Dispatcher.Run();
+        //}
 
         #endregion
         void Cauhinh_SoDoXuong()
@@ -252,6 +275,7 @@ namespace QL_BAO_TRI.ViewModels
             }
             visiblity_chaymay = "Visible";
             May_Chon = (tbdanhMucMay)btn.Tag;
+
             if (May_Chon.TrangThai.Equals("Dung"))
             {
                 text_chay_dung = "Chạy";
