@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Threading;
+using QL_BAO_TRI.Views_PhuTro;
 
 namespace QL_BAO_TRI.ViewModels
 {
@@ -44,6 +45,11 @@ namespace QL_BAO_TRI.ViewModels
             get { return GetProperty(() => text_chay_dung); }
             set { SetProperty(() => text_chay_dung, value); }
         }
+        public string text_Hu_Sua_Xong
+        {
+            get { return GetProperty(() => text_Hu_Sua_Xong); }
+            set { SetProperty(() => text_Hu_Sua_Xong, value); }
+        }
         #region list tbDanhMucLoaiTonThat
         //public ObservableCollection<tbDanhMucLoaiTonThat> List_LoaiTonthat
         //{
@@ -66,8 +72,15 @@ namespace QL_BAO_TRI.ViewModels
         DispatcherTimer TimerChayMay = new DispatcherTimer();
         DispatcherTimer TimerSoDoMay = new DispatcherTimer();
         DispatcherTimer Timer_btn = new DispatcherTimer();
+        DispatcherTimer Timer_LoadSoDoXuong = new DispatcherTimer();
         #endregion
-       
+        #region Báo máy hư
+        public string Content_BaoMayHu {
+            get { return GetProperty(() => Content_BaoMayHu); }
+            set { SetProperty(() => Content_BaoMayHu, value); }
+        }
+        public string text_checkbox_name { get; set; } = "MayDangChay";
+        #endregion
 
 
         protected override void OnInitializeInDesignMode()
@@ -85,16 +98,68 @@ namespace QL_BAO_TRI.ViewModels
         public DelegateCommand<object> LoadForm_Command { get; private set; }
         public DelegateCommand BtnCauHinhSoDoXuong_Command { get; private set; }
         public DelegateCommand BtnChay_Dungmay_Command { get; private set; }
+        // báo máy hư
+        public DelegateCommand BtnMayHu_Command { get; private set; }
+        public DelegateCommand<object> BtnMayHu_OK_Command { get; private set; }
+        public DelegateCommand<object> Checkbox_MayHu_name { get; private set; }
+        //end báo máy hư
         #endregion
         public MainViewModel()
         {
             LoadForm_Command = new DelegateCommand<object>(Load_form, true);
             BtnCauHinhSoDoXuong_Command = new DelegateCommand(Cauhinh_SoDoXuong, true);
             BtnChay_Dungmay_Command = new DelegateCommand(Chay_Dung_May, true);
-
+            BtnMayHu_Command = new DelegateCommand(Button_MayHu, true);
+            //báo máy hư
+            BtnMayHu_OK_Command = new DelegateCommand<object>(Button_MayHu_OK, true);
+            Checkbox_MayHu_name = new DelegateCommand<object>(Check_Box_mayHu, true);
+            //end báo máy hư
         }
 
         #region xu ly cac command
+        #region Button máy hư
+        void Check_Box_mayHu(object obj)
+        {
+            if (obj != null)
+            {
+                text_checkbox_name = obj.ToString();
+            }
+           
+            //MessageBox.Show(obj.ToString());
+        }
+        void Button_MayHu_OK(object obj)
+        {
+            //MessageBox.Show(text_checkbox_name+"  ---  "+Content_BaoMayHu);
+            if (String.IsNullOrEmpty(Content_BaoMayHu))
+            {
+                ThemedMessageBox.Show(title: "Thông báo", text: "Xin cho biết tình trạng máy ?", messageBoxButtons: MessageBoxButton.OK, icon: MessageBoxImage.Warning);
+            }
+
+        }
+        void Button_MayHu()
+        {
+            switch (May_Chon.TrangThai)
+            {
+                case "Chay":
+                case "Dung":
+                    text_Hu_Sua_Xong = "Máy hư";
+                    frmBaoMayHu frm = new frmBaoMayHu();
+                    frm.ShowDialog();
+                    break;
+                case "Sap":
+                    //cap nhat trang thay là hu
+                    break;
+                case "Hu":
+                    // cập nhật trang thay nó là Sua
+                    break;
+                case "Sua":
+                    //khi nhấp vào là đã sữa xong. nhấp vào nghiệm thu
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
         #region btn Chay dung may
         void Chay_Dung_May()
         {
@@ -260,7 +325,9 @@ namespace QL_BAO_TRI.ViewModels
                 }
             }
             #endregion
-            
+
+            //mỗi 30s sẻ load lại so đồ xưởng
+            _Timer_LoadSoDoXuong();
         }
         //btn chon may
         private void Btn_Click(object sender, RoutedEventArgs e)
@@ -284,95 +351,144 @@ namespace QL_BAO_TRI.ViewModels
             {
                 text_chay_dung = "Dừng";
             }
+
+            switch (May_Chon.TrangThai)
+            {
+                case "Chay":
+                case "Dung":
+                    text_Hu_Sua_Xong = "Máy hư";
+                    break;
+                case "Sap":
+                    text_Hu_Sua_Xong = "Dừng để sửa";
+                    break;
+                case "Hu":
+                    text_Hu_Sua_Xong = "Bắt đầu sửa";
+                    break;
+                case "Sua":
+                    text_Hu_Sua_Xong = "Sửa xong";
+                    break;
+                default:
+                    break;
+            }
             //5s tắt menu chay may
             timer_ChayMay();
         }
 
         #endregion
         #region code timer
-        private void timer_ChayMay()
-        {
-            TimerChayMay.Tick += new EventHandler(dispatcherTimer_Tick);
-            TimerChayMay.Interval = new TimeSpan(0, 0, 3);
-            TimerChayMay.Start();
-        }
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            //5s chạy 1 lần
-            // code goes here 
-            visiblity_chaymay = Visibility.Collapsed.ToString();
-            //MessageBox.Show("tat ud");
-            TimerChayMay.Stop();
-            //dừng không cho chạy nữa
-        }
-        private void timer_loadSoDoMay()
-        {
-            TimerSoDoMay.Tick += new EventHandler(TimerTheVang_Tick);
-            TimerSoDoMay.Interval = new TimeSpan(0, 0, 1);
-            TimerSoDoMay.Start();
-        }
-        private void TimerTheVang_Tick(object sender, EventArgs e)
-        {
+            #region hien menu dừng - chay máy
 
-            List<Label> label = DesigningCanvas.Children.OfType<Label>().ToList();
-            
-            foreach (var lb in label)
+            private void timer_ChayMay()
             {
-                if (lb.Visibility == Visibility.Visible)
-                {
-                    lb.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    lb.Visibility = Visibility.Visible;
-                }
-                
-                //DesigningCanvas.Children.Remove(image);
+                TimerChayMay.Tick += new EventHandler(dispatcherTimer_Tick);
+                TimerChayMay.Interval = new TimeSpan(0, 0, 3);
+                TimerChayMay.Start();
             }
-            //Load_soDoMay();
-        }
-        //cap nhat btn may
-        private void capnhat_btn_may()
-        {
-            Timer_btn.Tick += new EventHandler(Timerbtn_Tick);
-            Timer_btn.Interval = new TimeSpan(0, 0, 1);
-            Timer_btn.Start();
-        }
-        private void Timerbtn_Tick(object sender, EventArgs e)
-        {
-
-            List<SimpleButton> btnl = DesigningCanvas.Children.OfType<SimpleButton>().ToList();
-
-            foreach (var btn in btnl)
+            private void dispatcherTimer_Tick(object sender, EventArgs e)
             {
-                tbdanhMucMay tbmay = (tbdanhMucMay)btn.Tag;
-                if (tbmay.MaMay== May_Chon.MaMay)
+                //5s chạy 1 lần
+                // code goes here 
+                visiblity_chaymay = Visibility.Collapsed.ToString();
+                //MessageBox.Show("tat ud");
+                TimerChayMay.Stop();
+                //dừng không cho chạy nữa
+            }
+
+            #endregion
+
+            #region chóp tắt thẻ vàng
+
+            private void timer_loadSoDoMay()
+            {
+                TimerSoDoMay.Tick += new EventHandler(TimerTheVang_Tick);
+                TimerSoDoMay.Interval = new TimeSpan(0, 0, 1);
+                TimerSoDoMay.Start();
+            }
+            private void TimerTheVang_Tick(object sender, EventArgs e)
+            {
+
+                List<Label> label = DesigningCanvas.Children.OfType<Label>().ToList();
+            
+                foreach (var lb in label)
                 {
-                    switch (May_Chon.TrangThai)
+                    if (lb.Visibility == Visibility.Visible)
                     {
-                        case "Chay":
-                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#A2EB96");
-                            break;
-                        case "Dung":
-                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#C0C0C0");
-                            break;
-                        case "Sap":
-                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EBDE4A");
-                            break;
-                        case "Hu":
-                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5363D");
-                            break;
-                        case "Sua":
-                            btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5427F");
-                            break;
-                        default:
-                            break;
+                        lb.Visibility = Visibility.Hidden;
+                    }
+                    else
+                    {
+                        lb.Visibility = Visibility.Visible;
+                    }
+                
+                    //DesigningCanvas.Children.Remove(image);
+                }
+                //Load_soDoMay();
+            }
+
+            #endregion
+
+            #region cap nhật lại trang thái các máy
+
+            //cap nhat btn may
+            private void capnhat_btn_may()
+            {
+                Timer_btn.Tick += new EventHandler(Timerbtn_Tick);
+                Timer_btn.Interval = new TimeSpan(0, 0, 1);
+                Timer_btn.Start();
+            }
+            private void Timerbtn_Tick(object sender, EventArgs e)
+            {
+
+                List<SimpleButton> btnl = DesigningCanvas.Children.OfType<SimpleButton>().ToList();
+
+                foreach (var btn in btnl)
+                {
+                    tbdanhMucMay tbmay = (tbdanhMucMay)btn.Tag;
+                    if (tbmay.MaMay== May_Chon.MaMay)
+                    {
+                        switch (May_Chon.TrangThai)
+                        {
+                            case "Chay":
+                                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#A2EB96");
+                                break;
+                            case "Dung":
+                                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#C0C0C0");
+                                break;
+                            case "Sap":
+                                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#EBDE4A");
+                                break;
+                            case "Hu":
+                                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5363D");
+                                break;
+                            case "Sua":
+                                btn.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#F5427F");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
+                Timer_btn.Stop();
+                //Load_soDoMay();
             }
-            Timer_btn.Stop();
-            //Load_soDoMay();
+
+        #endregion
+
+            #region timer load so do xuong moi 15s
+        private void _Timer_LoadSoDoXuong()
+        {
+            Timer_LoadSoDoXuong.Tick += new EventHandler(Timer_LoadSoDoXuong_Tick);
+            Timer_LoadSoDoXuong.Interval = new TimeSpan(0, 0, 30);
+            Timer_LoadSoDoXuong.Start();
         }
+
+        private void Timer_LoadSoDoXuong_Tick(object sender, EventArgs e)
+        {
+            DesigningCanvas.Children.Clear();
+            Load_soDoMay();
+        }
+        #endregion
+
         #endregion
     }
 }
