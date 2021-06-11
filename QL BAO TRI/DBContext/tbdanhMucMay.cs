@@ -119,5 +119,6 @@ namespace QL_BAO_TRI.DBContext
         public Nullable<short> Infoword38 { get; set; }
         public Nullable<int> LoaiDon { get; set; }
         public Nullable<float> HeSoPickUp { get; set; }
+        public Nullable<bool> TrangThaiHoatDong { get; set; }
     }
 }

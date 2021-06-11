@@ -5,7 +5,7 @@
     xmlns:ViewModels="clr-namespace:QL_BAO_TRI.ViewModels" 
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-    xmlns:dxca="http://schemas.devexpress.com/winfx/2008/xaml/carousel" xmlns:local="clr-namespace:QL_BAO_TRI.UserControls"
+    xmlns:dxca="http://schemas.devexpress.com/winfx/2008/xaml/carousel" xmlns:local="clr-namespace:QL_BAO_TRI.UserControls" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                  x:Class="QL_BAO_TRI.Views.MainWindow"
     Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
     x:Name="frMain"
@@ -18,49 +18,77 @@
     <Window.Resources>
 
     </Window.Resources>
-
-    <Grid>
-
-        <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas" 
+    <ScrollViewer dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap">
+        <Grid>
+       
+            <Canvas Margin="0" Background="#FFEBEBEB" x:Name="DesigningCanvas" 
                 >
-            <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadForm_Command}" CommandParameter="{Binding ElementName=DesigningCanvas}"/>
-            </dxmvvm:Interaction.Behaviors>
-            <!--<dx:SimpleButton Height="41" Width="93" Canvas.Left="10" Canvas.Top="10" />-->
-
-        </Canvas>
-
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding LoadForm_Command}" CommandParameter="{Binding ElementName=DesigningCanvas}"/>
+                </dxmvvm:Interaction.Behaviors>
+                <!--<dx:SimpleButton Height="41" Width="93" Canvas.Left="10" Canvas.Top="10" />-->
+                <dxb:BarManager.DXContextMenu >
+                    <dxb:PopupMenu Canvas.Left="756" Canvas.Top="238">
+                        <dxb:PopupMenu.Items>
+                            <dxb:BarButtonItem
+                                Content="Xem tổn thất toàn xưởng"
+                                />
+                            <dxb:BarButtonItem
+                                Content="Thay đổi mã tổ "
+                                 />
+                            <dxb:BarButtonItem
+                                Content="Phan quyền cập nhật"
+                                 />
+                            <dxb:BarButtonItem
+                                Content="Khóa sơ đồ"
+                                 />
+                            <dxb:BarButtonItem
+                                Content="Thao tác sơ đồ"
+                                 />
+                            <dxb:BarButtonItem
+                                Content="Thêm máy vào sơ đồ"
+                                 />
+                            <dxb:BarButtonItem
+                                Content="Danh mục máy"
+                                 />
+                        </dxb:PopupMenu.Items>
+                    </dxb:PopupMenu>
+                </dxb:BarManager.DXContextMenu>
+            </Canvas>
+       
         <Canvas  >
-            <dxwui:HamburgerMenu ViewState="CompactInline">
-                <dxwui:HamburgerMenuNavigationButton Content="Home"  />
-                <dxwui:HamburgerMenuItemSeparator/>
-                <dxwui:HamburgerSubMenu Content="Menu" >
-                    <dxwui:HamburgerSubMenu.Items>
-                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 1" PreviewContent="PreviewItem 1" ShowInPreview="True" SelectOnClick="False" RightContent="RC"/>
-                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 2" PreviewContent="PreviewItem 2" ShowInPreview="True" SelectOnClick="False"/>
-                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 3"/>
-                        <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 4" ShowPreviewMark="True"/>
-                    </dxwui:HamburgerSubMenu.Items>
-                </dxwui:HamburgerSubMenu>
-                <dxwui:HamburgerMenuHyperlinkButton NavigateUri="https://www.devexpress.com/" Content="More information..." Placement="Bottom"/>
-                <dxwui:HamburgerMenuNavigationButton  Content="Cấu hình sơ đồ xưởng" Placement="Bottom" Command="{Binding BtnCauHinhSoDoXuong_Command}" />
-                <dxwui:HamburgerMenu.BottomBarItems>
-                    <dxwui:HamburgerMenuBottomBarNavigationButton   Placement="Right"/>
-                    <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
-                    <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
-                    <dxwui:HamburgerMenuBottomBarCheckBox />
-                </dxwui:HamburgerMenu.BottomBarItems>
-            </dxwui:HamburgerMenu>
-            <StackPanel x:Name="canvas_chaymay" Width="300" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay, Mode=TwoWay}">
-                <dx:SimpleButton Content="{Binding text_chay_dung,TargetNullValue=Chay}" Command="{Binding BtnChay_Dungmay_Command}"/>
-                <dx:SimpleButton Content="{Binding text_Hu_Sua_Xong,TargetNullValue=May_hư}" Command="{Binding BtnMayHu_Command}"/>
-                <dx:SimpleButton Content="Treo thẻ"/>
-                <dx:SimpleButton Content="+Tổn Thất"/>
-                <dx:SimpleButton Content="Xem phiếu bảo trì"/>
-            </StackPanel>
-            
-        </Canvas>
+                <dxwui:HamburgerMenu ViewState="CompactInline">
+                    <dxwui:HamburgerMenuNavigationButton Content="Home"  />
+                    <dxwui:HamburgerMenuItemSeparator/>
+                    <dxwui:HamburgerSubMenu Content="Menu" >
+                        <dxwui:HamburgerSubMenu.Items>
+                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 1" PreviewContent="PreviewItem 1" ShowInPreview="True" SelectOnClick="False" RightContent="RC"/>
+                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 2" PreviewContent="PreviewItem 2" ShowInPreview="True" SelectOnClick="False"/>
+                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 3"/>
+                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 4" ShowPreviewMark="True"/>
+                        </dxwui:HamburgerSubMenu.Items>
+                    </dxwui:HamburgerSubMenu>
+                    <dxwui:HamburgerMenuHyperlinkButton NavigateUri="https://www.devexpress.com/" Content="More information..." Placement="Bottom"/>
+                    <dxwui:HamburgerMenuNavigationButton  Content="Cấu hình sơ đồ xưởng" Placement="Bottom" Command="{Binding BtnCauHinhSoDoXuong_Command}" />
+                    <dxwui:HamburgerMenu.BottomBarItems>
+                        <dxwui:HamburgerMenuBottomBarNavigationButton   Placement="Right"/>
+                        <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
+                        <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
+                        <dxwui:HamburgerMenuBottomBarCheckBox />
+                    </dxwui:HamburgerMenu.BottomBarItems>
+                </dxwui:HamburgerMenu>
+                <StackPanel x:Name="canvas_chaymay" Width="350" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay, Mode=TwoWay}">
+                    <dx:SimpleButton Content="{Binding text_chay_dung,TargetNullValue=Chay}" Command="{Binding BtnChay_Dungmay_Command}"/>
+                    <dx:SimpleButton Content="{Binding text_Hu_Sua_Xong,TargetNullValue=May_hư}" Command="{Binding BtnMayHu_Command}"/>
+                    <dx:SimpleButton Content="Treo thẻ"/>
+                    <dx:SimpleButton Content="+Tổn Thất"/>
+                    <dx:SimpleButton Content="Phiếu bảo trì" Command="{Binding BtnXemPhieuBaoTri_Command}"/>
+                </StackPanel>
 
+            </Canvas>
+
+        
     </Grid>
-
+        
+    </ScrollViewer>
 </dx:ThemedWindow>

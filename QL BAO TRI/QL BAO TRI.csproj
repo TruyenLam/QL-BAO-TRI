@@ -98,6 +98,9 @@
     </ApplicationDefinition>
     <Compile Include="Classes\THTData_DataProvider.cs" />
     <Compile Include="Classes\TienIchFunctions.cs" />
+    <Compile Include="DBContext\View_DanhSachPhieuBaoTri_MachineStatus.cs">
+      <DependentUpon>THTData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\May_Dang_Chon_Class.cs" />
     <Compile Include="Models\Ton_That_Class.cs" />
     <Compile Include="Models\User_Class.cs" />
@@ -107,6 +110,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SoDoXuongViewModel.cs" />
     <Compile Include="ViewModels\TonThatViewModel.cs" />
+    <Compile Include="Views\DSPhieuBaoTriWindow.xaml.cs">
+      <DependentUpon>DSPhieuBaoTriWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -301,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DSPhieuBaoTriWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,7 +342,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -103,6 +103,9 @@ namespace QL_BAO_TRI.ViewModels
         public DelegateCommand<object> BtnMayHu_OK_Command { get; private set; }
         public DelegateCommand<object> Checkbox_MayHu_name { get; private set; }
         //end báo máy hư
+        //xem phieu bao tri
+        public DelegateCommand BtnXemPhieuBaoTri_Command { get; private set; }
+        //end xem phieu bao tri
         #endregion
         public MainViewModel()
         {
@@ -114,9 +117,19 @@ namespace QL_BAO_TRI.ViewModels
             BtnMayHu_OK_Command = new DelegateCommand<object>(Button_MayHu_OK, true);
             Checkbox_MayHu_name = new DelegateCommand<object>(Check_Box_mayHu, true);
             //end báo máy hư
+            //xem phieu bao tri
+            BtnXemPhieuBaoTri_Command = new DelegateCommand(XemPhieuBaoTri, true);
+            //end xem phieu bao tri
         }
 
         #region xu ly cac command
+        #region Xem phiếu bảo trì
+        void XemPhieuBaoTri()
+        {
+            DSPhieuBaoTriWindow frphieubaotri = new DSPhieuBaoTriWindow();
+            frphieubaotri.Show();
+        }
+        #endregion
         #region Button máy hư
         void Check_Box_mayHu(object obj)
         {

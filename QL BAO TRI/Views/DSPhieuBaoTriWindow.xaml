@@ -1,0 +1,77 @@
+﻿<dx:ThemedWindow
+    x:Class="QL_BAO_TRI.Views.DSPhieuBaoTriWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
+    Title="Danh sách phiếu bảo trì" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+    >
+
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="40">
+            <dxlc:LayoutItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
+                    <Border BorderThickness="1" BorderBrush="#FFB6B9D4" CornerRadius="2" Width="200">
+                        <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Label Content="Nhóm máy: "/>
+                            <dxe:ComboBoxEdit Width="130">
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:ComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:ComboBoxEditItem Content="Canada" />
+                                <dxe:ComboBoxEditItem Content="Italy" />
+                                <dxe:ComboBoxEditItem Content="USA" />
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutGroup>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="#FFB6B9D4" CornerRadius="2" Margin="5,0,0,0">
+                        <dxlc:LayoutGroup>
+                            <RadioButton Content="Chư bắt đầu"/>
+                            <RadioButton Content="Đang thực hiện"/>
+                            <RadioButton Content="Thực hiện xong"/>
+                        </dxlc:LayoutGroup>
+                    </Border>
+
+                    <Border BorderThickness="1" BorderBrush="#FFB6B9D4" CornerRadius="2" Margin="5,0,0,0">
+                        <dxlc:LayoutGroup>
+                            <RadioButton Content="Định kỳ"/>
+                            <RadioButton Content="Sự cố"/>
+                            <RadioButton Content="Tất cả"/>
+                        </dxlc:LayoutGroup>
+                    </Border>
+                    <dx:SimpleButton Content="Lọc" Margin="5,0,0,0"/>
+                    <dx:SimpleButton Content="Xem" Margin="5,0,0,0"/>
+                </StackPanel>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <dxlc:LayoutItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <dxg:GridControl >
+                    <dxg:GridControl.View>
+                        <dxg:TableView/>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn FieldName="MaSoPhieuBaoTri" Header="Mã số phiếu" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="TenMay" Header="Tên máy" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NgayLap" Header="Ngày lập" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="MaDK" Header="Định kỳ" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="KeHoach" Header="Kế hoạch" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NhomBaoTri" Header="Nhóm TH" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="MotaTinhTrangBanDau" Header="Mô tả ban đầu" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="TinhTrangThucTe" Header="Đánh giá NV bảo trì" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NguyenNhan" Header="Nguyên nhân" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="ThoiGianBatDau" Header="Thời gian bắt đầu" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="ThoiGianKetThuc" Header="Thời gian kết thúc" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="ThoiGianBatDauNgungMay" Header="Thời gian bắt đầu ngừng máy" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NguoiLap" Header="Người lập" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NguoiBatDau" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="NguoiKetThuc" IsSmart="True"/>
+                </dxg:GridControl>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+
+</dx:ThemedWindow>

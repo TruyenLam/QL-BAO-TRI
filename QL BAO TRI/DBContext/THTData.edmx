@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="THTDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="THTDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbDanhMucDonVi">
           <Key>
             <PropertyRef Name="MaDV" />
@@ -146,6 +146,7 @@
           <Property Name="Infoword38" Type="smallint" />
           <Property Name="LoaiDon" Type="int" />
           <Property Name="HeSoPickUp" Type="real" />
+          <Property Name="TrangThaiHoatDong" Type="bit" />
         </EntityType>
         <EntityType Name="tbDanhMucThietBi">
           <Key>
@@ -237,7 +238,7 @@
           <Property Name="IDCongViec" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'ITTest_02.dbo.tbTheKhiemKhuyet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tbTheKhiemKhuyet">
           <Key>
             <PropertyRef Name="MaThe" />
@@ -279,6 +280,28 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
           <Property Name="EvenNo" Type="bigint" />
           <Property Name="Checked" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITTest_02.dbo.View_DanhSachPhieuBaoTri_MachineStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_DanhSachPhieuBaoTri_MachineStatus">
+          <Key>
+            <PropertyRef Name="MaSoPhieuBaoTri" />
+          </Key>
+          <Property Name="MaSoPhieuBaoTri" Type="int" Nullable="false" />
+          <Property Name="TenMay" Type="varchar" MaxLength="50" />
+          <Property Name="NgayLap" Type="smalldatetime" />
+          <Property Name="MaDK" Type="varchar" MaxLength="10" />
+          <Property Name="KeHoach" Type="varchar" MaxLength="10" />
+          <Property Name="NhomBaoTri" Type="varchar" MaxLength="25" />
+          <Property Name="MotaTinhTrangBanDau" Type="varchar" MaxLength="500" />
+          <Property Name="TinhTrangThucTe" Type="varchar" MaxLength="500" />
+          <Property Name="NguyenNhan" Type="varchar" MaxLength="500" />
+          <Property Name="ThoiGianBatDau" Type="smalldatetime" />
+          <Property Name="ThoiGianKetThuc" Type="smalldatetime" />
+          <Property Name="ThoiGianBatDauNgungMay" Type="smalldatetime" />
+          <Property Name="NguoiLap" Type="varchar" MaxLength="50" />
+          <Property Name="NguoiBatDau" Type="varchar" MaxLength="50" />
+          <Property Name="NguoiKetThuc" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="THTDataModelStoreContainer">
           <EntitySet Name="tbDanhMucDonVi" EntityType="Self.tbDanhMucDonVi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbDanhMucLoaiKhiemKhuyet" EntityType="Self.tbDanhMucLoaiKhiemKhuyet" Schema="dbo" store:Type="Tables" />
@@ -310,9 +333,27 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
     [tbTheKhiemKhuyet].[MaSoPhieuBaoTri] AS [MaSoPhieuBaoTri]
     FROM [dbo].[tbTheKhiemKhuyet] AS [tbTheKhiemKhuyet]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="View_DanhSachPhieuBaoTri_MachineStatus" EntityType="Self.View_DanhSachPhieuBaoTri_MachineStatus" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[MaSoPhieuBaoTri] AS [MaSoPhieuBaoTri], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[TenMay] AS [TenMay], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NgayLap] AS [NgayLap], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[MaDK] AS [MaDK], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[KeHoach] AS [KeHoach], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NhomBaoTri] AS [NhomBaoTri], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[MotaTinhTrangBanDau] AS [MotaTinhTrangBanDau], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[TinhTrangThucTe] AS [TinhTrangThucTe], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NguyenNhan] AS [NguyenNhan], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[ThoiGianBatDau] AS [ThoiGianBatDau], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[ThoiGianKetThuc] AS [ThoiGianKetThuc], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[ThoiGianBatDauNgungMay] AS [ThoiGianBatDauNgungMay], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NguoiLap] AS [NguoiLap], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NguoiBatDau] AS [NguoiBatDau], 
+    [View_DanhSachPhieuBaoTri_MachineStatus].[NguoiKetThuc] AS [NguoiKetThuc]
+    FROM [dbo].[View_DanhSachPhieuBaoTri_MachineStatus] AS [View_DanhSachPhieuBaoTri_MachineStatus]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="THTDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -457,6 +498,7 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
           <Property Name="Infoword38" Type="Int16" />
           <Property Name="LoaiDon" Type="Int32" />
           <Property Name="HeSoPickUp" Type="Single" />
+          <Property Name="TrangThaiHoatDong" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbDanhMucThietBi">
           <Key>
@@ -600,7 +642,28 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
           <EntitySet Name="tbPhieuBaoTris" EntityType="Self.tbPhieuBaoTri" />
           <EntitySet Name="tbTonThatThoiGians" EntityType="Self.tbTonThatThoiGian" />
           <EntitySet Name="tbTheKhiemKhuyets" EntityType="Self.tbTheKhiemKhuyet" />
+          <EntitySet Name="View_DanhSachPhieuBaoTri_MachineStatus" EntityType="THTDataModel.View_DanhSachPhieuBaoTri_MachineStatus" />
         </EntityContainer>
+        <EntityType Name="View_DanhSachPhieuBaoTri_MachineStatus">
+          <Key>
+            <PropertyRef Name="MaSoPhieuBaoTri" />
+          </Key>
+          <Property Name="MaSoPhieuBaoTri" Type="Int32" Nullable="false" />
+          <Property Name="TenMay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NgayLap" Type="DateTime" Precision="0" />
+          <Property Name="MaDK" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KeHoach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NhomBaoTri" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MotaTinhTrangBanDau" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TinhTrangThucTe" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NguyenNhan" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ThoiGianBatDau" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianBatDauNgungMay" Type="DateTime" Precision="0" />
+          <Property Name="NguoiLap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NguoiBatDau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NguoiKetThuc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -645,6 +708,7 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
           <EntitySetMapping Name="tbdanhMucMays">
             <EntityTypeMapping TypeName="THTDataModel.tbdanhMucMay">
               <MappingFragment StoreEntitySet="tbdanhMucMay">
+                <ScalarProperty Name="TrangThaiHoatDong" ColumnName="TrangThaiHoatDong" />
                 <ScalarProperty Name="MaMay" ColumnName="MaMay" />
                 <ScalarProperty Name="TenMay" ColumnName="TenMay" />
                 <ScalarProperty Name="NhomMay" ColumnName="NhomMay" />
@@ -884,6 +948,27 @@ warning 6002: The table/view 'THTData.dbo.tbTheKhiemKhuyet' does not have a prim
                 <ScalarProperty Name="Tuan" ColumnName="Tuan" />
                 <ScalarProperty Name="Thang" ColumnName="Thang" />
                 <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="MaSoPhieuBaoTri" ColumnName="MaSoPhieuBaoTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_DanhSachPhieuBaoTri_MachineStatus">
+            <EntityTypeMapping TypeName="THTDataModel.View_DanhSachPhieuBaoTri_MachineStatus">
+              <MappingFragment StoreEntitySet="View_DanhSachPhieuBaoTri_MachineStatus">
+                <ScalarProperty Name="NguoiKetThuc" ColumnName="NguoiKetThuc" />
+                <ScalarProperty Name="NguoiBatDau" ColumnName="NguoiBatDau" />
+                <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap" />
+                <ScalarProperty Name="ThoiGianBatDauNgungMay" ColumnName="ThoiGianBatDauNgungMay" />
+                <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+                <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+                <ScalarProperty Name="NguyenNhan" ColumnName="NguyenNhan" />
+                <ScalarProperty Name="TinhTrangThucTe" ColumnName="TinhTrangThucTe" />
+                <ScalarProperty Name="MotaTinhTrangBanDau" ColumnName="MotaTinhTrangBanDau" />
+                <ScalarProperty Name="NhomBaoTri" ColumnName="NhomBaoTri" />
+                <ScalarProperty Name="KeHoach" ColumnName="KeHoach" />
+                <ScalarProperty Name="MaDK" ColumnName="MaDK" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="TenMay" ColumnName="TenMay" />
                 <ScalarProperty Name="MaSoPhieuBaoTri" ColumnName="MaSoPhieuBaoTri" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -36,5 +36,6 @@ namespace QL_BAO_TRI.DBContext
         public virtual DbSet<tbPhieuBaoTri> tbPhieuBaoTris { get; set; }
         public virtual DbSet<tbTonThatThoiGian> tbTonThatThoiGians { get; set; }
         public virtual DbSet<tbTheKhiemKhuyet> tbTheKhiemKhuyets { get; set; }
+        public virtual DbSet<View_DanhSachPhieuBaoTri_MachineStatus> View_DanhSachPhieuBaoTri_MachineStatus { get; set; }
     }
 }
