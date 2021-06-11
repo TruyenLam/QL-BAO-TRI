@@ -107,6 +107,7 @@
     <Compile Include="UserControls\BaoMayHuView.xaml.cs">
       <DependentUpon>BaoMayHuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DSPhieuBaoTriViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SoDoXuongViewModel.cs" />
     <Compile Include="ViewModels\TonThatViewModel.cs" />
