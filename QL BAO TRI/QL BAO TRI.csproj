@@ -98,6 +98,12 @@
     </ApplicationDefinition>
     <Compile Include="Classes\THTData_DataProvider.cs" />
     <Compile Include="Classes\TienIchFunctions.cs" />
+    <Compile Include="DanhMucMayWindow.xaml.cs">
+      <DependentUpon>DanhMucMayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\tbkeHoach_NhomMay.cs">
+      <DependentUpon>THTData.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\View_DanhSachPhieuBaoTri_MachineStatus.cs">
       <DependentUpon>THTData.tt</DependentUpon>
     </Compile>
@@ -107,6 +113,7 @@
     <Compile Include="UserControls\BaoMayHuView.xaml.cs">
       <DependentUpon>BaoMayHuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DanhMucMayViewModel.cs" />
     <Compile Include="ViewModels\DSPhieuBaoTriViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SoDoXuongViewModel.cs" />
@@ -304,6 +311,10 @@
     <Compile Include="Views_PhuTro\frmBaoMayHu.xaml.cs">
       <DependentUpon>frmBaoMayHu.xaml</DependentUpon>
     </Compile>
+    <Page Include="DanhMucMayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\BaoMayHuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,6 +354,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

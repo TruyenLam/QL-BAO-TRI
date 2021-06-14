@@ -1,0 +1,48 @@
+﻿<dx:ThemedWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:ViewModels="clr-namespace:QL_BAO_TRI.ViewModels" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:DBContext="clr-namespace:QL_BAO_TRI.DBContext"
+    x:Class="QL_BAO_TRI.DanhMucMayWindow"
+    Title="Danh mục máy" Height="800" Width="1000" ShowBackButton="False" Icon="{dx:DXImage SvgImages/Reports/GaugeStyleLinearHorizontal.svg}"
+    >
+    <dx:ThemedWindow.Resources>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DBContext:THTDataEntities}" Path="tbdanhMucMays">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+    </dx:ThemedWindow.Resources>
+    <dx:ThemedWindow.DataContext>
+        <ViewModels:DanhMucMayViewModel/>
+    </dx:ThemedWindow.DataContext>
+
+    <Grid>
+        <dxlc:LayoutGroup Orientation="Vertical">
+            <dxlc:LayoutGroup Header="LayoutGroup" View="Group" Margin="0,5,0,0" >
+                <dxlc:LayoutItem  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <dx:SimpleButton Content="Thêm" Margin="0,0,5,0" Glyph="{dx:DXImage SvgImages/RichEdit/AddParagraphToTableOfContents.svg}"/>
+                        <dx:SimpleButton Content="Xóa" Margin="0,0,5,0" Glyph="{dx:DXImage SvgImages/Snap/RemoveFooter.svg}"/>
+                        <dx:SimpleButton Content="Sửa" Margin="0,0,5,0" Glyph="{dx:DXImage SvgImages/XAF/ModelEditor_Navigation_Items.svg}"/>
+                        <dx:SimpleButton Content="Lọc" Glyph="{dx:DXImage SvgImages/Dashboards/EnableSearch.svg}"/>
+                    </StackPanel>
+
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="LayoutGroup" View="Group" Orientation="Vertical">
+                <dxg:GridControl ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}" >
+                    <dxg:GridControl.View>
+                        <dxg:TableView/>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn FieldName="MaMay" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="TenMay" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="LoaiMay" IsSmart="True"/>
+                     <dxg:GridColumn FieldName="OrgaTEXConnect" IsSmart="True"/>
+                    <dxg:GridColumn FieldName="MaMayBCD" IsSmart="True"/>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+    </Grid>
+</dx:ThemedWindow>

@@ -195,6 +195,20 @@
           <Property Name="MaMay" Type="int" Nullable="false" />
           <Property Name="UserID" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbkeHoach_NhomMay">
+          <Key>
+            <PropertyRef Name="MaNhomMay" />
+          </Key>
+          <Property Name="MaNhomMay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNhomMay" Type="varchar" MaxLength="50" />
+          <Property Name="MucNuocMin" Type="int" />
+          <Property Name="MucNuocMax" Type="int" />
+          <Property Name="GhiChu" Type="varchar" MaxLength="500" />
+          <Property Name="TaiTrongMay" Type="real" />
+          <Property Name="SoHong" Type="real" />
+          <Property Name="LTMax" Type="real" />
+          <Property Name="SoMay" Type="real" />
+        </EntityType>
         <EntityType Name="tbPhieuBaoTri">
           <Key>
             <PropertyRef Name="MaSoPhieuBaoTri" />
@@ -311,6 +325,7 @@ warning 6002: The table/view 'ITTest_02.dbo.View_DanhSachPhieuBaoTri_MachineStat
           <EntitySet Name="tbDanhSachCongNhan" EntityType="Self.tbDanhSachCongNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbDanhSachCongNhanDungMay" EntityType="Self.tbDanhSachCongNhanDungMay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbDanhSachNVCapNhatTrangThaiThietBi" EntityType="Self.tbDanhSachNVCapNhatTrangThaiThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbkeHoach_NhomMay" EntityType="Self.tbkeHoach_NhomMay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbPhieuBaoTri" EntityType="Self.tbPhieuBaoTri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbTonThatThoiGian" EntityType="Self.tbTonThatThoiGian" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbTheKhiemKhuyet" EntityType="Self.tbTheKhiemKhuyet" store:Type="Tables" store:Schema="dbo">
@@ -643,6 +658,7 @@ warning 6002: The table/view 'ITTest_02.dbo.View_DanhSachPhieuBaoTri_MachineStat
           <EntitySet Name="tbTonThatThoiGians" EntityType="Self.tbTonThatThoiGian" />
           <EntitySet Name="tbTheKhiemKhuyets" EntityType="Self.tbTheKhiemKhuyet" />
           <EntitySet Name="View_DanhSachPhieuBaoTri_MachineStatus" EntityType="THTDataModel.View_DanhSachPhieuBaoTri_MachineStatus" />
+          <EntitySet Name="tbkeHoach_NhomMay" EntityType="THTDataModel.tbkeHoach_NhomMay" />
         </EntityContainer>
         <EntityType Name="View_DanhSachPhieuBaoTri_MachineStatus">
           <Key>
@@ -663,6 +679,20 @@ warning 6002: The table/view 'ITTest_02.dbo.View_DanhSachPhieuBaoTri_MachineStat
           <Property Name="NguoiLap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NguoiBatDau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NguoiKetThuc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbkeHoach_NhomMay">
+          <Key>
+            <PropertyRef Name="MaNhomMay" />
+          </Key>
+          <Property Name="MaNhomMay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNhomMay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MucNuocMin" Type="Int32" />
+          <Property Name="MucNuocMax" Type="Int32" />
+          <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TaiTrongMay" Type="Single" />
+          <Property Name="SoHong" Type="Single" />
+          <Property Name="LTMax" Type="Single" />
+          <Property Name="SoMay" Type="Single" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -970,6 +1000,21 @@ warning 6002: The table/view 'ITTest_02.dbo.View_DanhSachPhieuBaoTri_MachineStat
                 <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
                 <ScalarProperty Name="TenMay" ColumnName="TenMay" />
                 <ScalarProperty Name="MaSoPhieuBaoTri" ColumnName="MaSoPhieuBaoTri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbkeHoach_NhomMay">
+            <EntityTypeMapping TypeName="THTDataModel.tbkeHoach_NhomMay">
+              <MappingFragment StoreEntitySet="tbkeHoach_NhomMay">
+                <ScalarProperty Name="SoMay" ColumnName="SoMay" />
+                <ScalarProperty Name="LTMax" ColumnName="LTMax" />
+                <ScalarProperty Name="SoHong" ColumnName="SoHong" />
+                <ScalarProperty Name="TaiTrongMay" ColumnName="TaiTrongMay" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MucNuocMax" ColumnName="MucNuocMax" />
+                <ScalarProperty Name="MucNuocMin" ColumnName="MucNuocMin" />
+                <ScalarProperty Name="TenNhomMay" ColumnName="TenNhomMay" />
+                <ScalarProperty Name="MaNhomMay" ColumnName="MaNhomMay" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
