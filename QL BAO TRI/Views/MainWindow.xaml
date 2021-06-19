@@ -60,22 +60,13 @@
                 <dxwui:HamburgerMenu ViewState="CompactInline">
                     <dxwui:HamburgerMenuNavigationButton Content="Home"  />
                     <dxwui:HamburgerMenuItemSeparator/>
-                    <dxwui:HamburgerSubMenu Content="Menu" >
-                        <dxwui:HamburgerSubMenu.Items>
-                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 1" PreviewContent="PreviewItem 1" ShowInPreview="True" SelectOnClick="False" RightContent="RC"/>
-                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 2" PreviewContent="PreviewItem 2" ShowInPreview="True" SelectOnClick="False"/>
-                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 3"/>
-                            <dxwui:HamburgerSubMenuNavigationButton Content="MenuSubItem 4" ShowPreviewMark="True"/>
-                        </dxwui:HamburgerSubMenu.Items>
-                    </dxwui:HamburgerSubMenu>
-                    <dxwui:HamburgerMenuHyperlinkButton NavigateUri="https://www.devexpress.com/" Content="More information..." Placement="Bottom"/>
-                    <dxwui:HamburgerMenuNavigationButton  Content="Cấu hình sơ đồ xưởng" Placement="Bottom" Command="{Binding BtnCauHinhSoDoXuong_Command}" />
-                    <dxwui:HamburgerMenu.BottomBarItems>
-                        <dxwui:HamburgerMenuBottomBarNavigationButton   Placement="Right"/>
-                        <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
-                        <dxwui:HamburgerMenuBottomBarRadioButton GroupName="Radio" />
-                        <dxwui:HamburgerMenuBottomBarCheckBox />
-                    </dxwui:HamburgerMenu.BottomBarItems>
+                    <dxwui:HamburgerMenuNavigationButton  Content="Xem tổn thất toàn xưởng" Placement="Bottom" />
+                    <dxwui:HamburgerMenuNavigationButton  Content="Thay đổi mã tổ" Placement="Bottom" />
+                    <dxwui:HamburgerMenuNavigationButton  Content="Phân quyền cập nhật" Placement="Bottom" />
+                    <dxwui:HamburgerMenuNavigationButton  Content="Khóa sơ đồ" Placement="Bottom" />
+                    <dxwui:HamburgerMenuNavigationButton  Content="Thao tác sơ đồ" Placement="Bottom" Command="{Binding BtnCauHinhSoDoXuong_Command}" />
+                    <dxwui:HamburgerMenuNavigationButton  Content="Danh mục máy" Placement="Bottom" />
+                   
                 </dxwui:HamburgerMenu>
                 <StackPanel x:Name="canvas_chaymay" Width="350" Orientation="Horizontal" Canvas.Left="{Binding left_menu}" Canvas.Top="{Binding top_menu}" Visibility="{Binding visiblity_chaymay, Mode=TwoWay}">
                     <dx:SimpleButton Content="{Binding text_chay_dung,TargetNullValue=Chay}" Command="{Binding BtnChay_Dungmay_Command}"/>

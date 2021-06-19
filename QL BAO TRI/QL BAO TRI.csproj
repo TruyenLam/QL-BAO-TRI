@@ -98,8 +98,23 @@
     </ApplicationDefinition>
     <Compile Include="Classes\THTData_DataProvider.cs" />
     <Compile Include="Classes\TienIchFunctions.cs" />
-    <Compile Include="DanhMucMayWindow.xaml.cs">
+    <Compile Include="Views\BieuDoWindow.xaml.cs">
+      <DependentUpon>BieuDoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhMucMayWindow.xaml.cs">
       <DependentUpon>DanhMucMayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhMucTonThatThoiGianWindow.xaml.cs">
+      <DependentUpon>DanhMucTonThatThoiGianWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhSachCongNhanCapNhatTrangThaiMayWindow.xaml.cs">
+      <DependentUpon>DanhSachCongNhanCapNhatTrangThaiMayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhSachKhiemKhuyetDayDuWindow.xaml.cs">
+      <DependentUpon>DanhSachKhiemKhuyetDayDuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DanhSachKhiemKhuyetWindow.xaml.cs">
+      <DependentUpon>DanhSachKhiemKhuyetWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBContext\tbkeHoach_NhomMay.cs">
       <DependentUpon>THTData.tt</DependentUpon>
@@ -118,6 +133,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SoDoXuongViewModel.cs" />
     <Compile Include="ViewModels\TonThatViewModel.cs" />
+    <Compile Include="Views\DanhSachTonThatWindow.xaml.cs">
+      <DependentUpon>DanhSachTonThatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DSPhieuBaoTriWindow.xaml.cs">
       <DependentUpon>DSPhieuBaoTriWindow.xaml</DependentUpon>
     </Compile>
@@ -311,11 +329,35 @@
     <Compile Include="Views_PhuTro\frmBaoMayHu.xaml.cs">
       <DependentUpon>frmBaoMayHu.xaml</DependentUpon>
     </Compile>
-    <Page Include="DanhMucMayWindow.xaml">
+    <Page Include="Views\BieuDoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhMucMayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhMucTonThatThoiGianWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhSachCongNhanCapNhatTrangThaiMayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhSachKhiemKhuyetDayDuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhSachKhiemKhuyetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\BaoMayHuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DanhSachTonThatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
