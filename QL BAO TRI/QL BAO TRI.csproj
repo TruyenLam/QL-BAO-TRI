@@ -98,6 +98,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\THTData_DataProvider.cs" />
     <Compile Include="Classes\TienIchFunctions.cs" />
+    <Compile Include="ViewModels\DanhMucTonThatThoiGianViewModel.cs" />
     <Compile Include="Views\BieuDoWindow.xaml.cs">
       <DependentUpon>BieuDoWindow.xaml</DependentUpon>
     </Compile>
@@ -396,7 +397,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
