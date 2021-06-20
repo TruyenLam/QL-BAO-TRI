@@ -36,7 +36,7 @@
             <dxlc:LayoutItem Label="Nhóm tổn thất:">
                 <dxe:ComboBoxEdit/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutGroup Header="Nhóm tổn thất" View="GroupBox" Orientation="Horizontal" Height="90">
+            <dxlc:LayoutGroup Header="Nhóm tổn thất" View="GroupBox" Orientation="Horizontal" Height="70" Background="#FF78C881">
                 <RadioButton Content="Không có kế hoạch SX"/>
                 <RadioButton Content="Dừng theo kế hoach"/>
                 <RadioButton Content="Dừng đột xuất"/>
